@@ -16,13 +16,14 @@
     <div class="container-phone p-0 m-0">
         <header class="header-schedule">
             <h1 class="title-schedule me-3 mt-2 ps-2">Events</h1>
-            <form class="schedule-selection">
-                <input type="radio" name="schedule-selection" class="btn-check" id="all" autocomplete="off">
+            <form class="schedule-selection" @click="mostrar">
+                <input type="radio" name="schedule-selection" v-model="period" value="all" class="btn-check" id="all" autocomplete="off">
                 <label class="btn selection all d-flex align-items-center" for="all">ALL</label>
-                <input type="radio" name="schedule-selection" class="btn-check" id="month" autocomplete="off">
+                <input type="radio" name="schedule-selection" v-model="period" value="month" class="btn-check" id="month" autocomplete="off">
                 <label class="btn selection month d-flex align-items-center" for="month">MONTH</label>
-                <input type="radio" name="schedule-selection" class="btn-check" id="week" autocomplete="off">
+                <input type="radio" name="schedule-selection" v-model="period" value="week" class="btn-check" id="week" autocomplete="off">
                 <label class="btn selection week d-flex align-items-center" for="week">WEEK</label>
+                <span>{{period}}</span>
                 <!-- <span class="selection all">ALL</span>
             
             <span class="selection month">MONTH</span>
