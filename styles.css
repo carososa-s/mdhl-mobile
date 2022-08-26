@@ -1,0 +1,230 @@
+@import url("https://use.typekit.net/tog1idc.css");
+
+*{
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+body {
+    background-color: #161616;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-height: 100vh;
+    font-family: Poppins!important;
+    scrollbar-width: none;
+}
+
+.container-phone {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.top {
+    height: 5rem;
+}
+
+.container-user-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: url(./wallhaven-q288gq.png);
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.username {
+    font-size: 1.13rem;
+}
+
+.main {
+    background-image: url(./assets/img/bg-home.jpg);
+    background-size: cover;
+    height:85%;
+    background-position-x: 50%;
+   
+}
+
+.title-home {
+ font-size: 50px;
+ font-weight: bolder;
+ text-align: end;
+ background-color: #16161600;
+}
+
+.container-info {
+    display:flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.important-info{
+ background-color: #C44a35;
+ padding: 2rem;
+ width: 80%;
+ text-align: center;
+
+}
+
+.rules {
+    margin-left: auto;
+    border-radius: 2rem 0 0 2rem!important;
+    margin-top: auto;
+}
+
+.contact {
+    border-radius: 0 2rem 2rem 0!important;
+}
+
+.nav-bar {
+    background: rgb(95,161,153);
+    background: linear-gradient(0deg, rgba(95,161,153,1) 0%, rgba(150,184,115,1) 36%, rgba(184,198,91,1) 65%, rgba(224,200,6,1) 100%, rgba(224,199,2,1) 100%, rgba(229,204,6,1) 130%);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.iconos-nav {
+    width: 2rem;
+    color: white;
+}
+
+.selector {
+    background: rgba(7, 7, 7, 0.24);
+    height: 3rem;
+    border-radius: 1rem;
+    width: 80%;
+    margin: auto;
+    display:flex;
+}
+
+.selectors {
+    width: 51%;
+    text-align: center;
+}
+
+.header-schedule {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 0.5rem;
+    border-radius: 0 0 1rem 1rem;
+    z-index: 1;
+}
+
+.main-schedule {
+    margin-top: 7rem;
+    margin-bottom: 4rem;
+    max-width: 100vw;
+    width: 100vw;
+}
+
+.title-schedule {
+    width: 100%;
+    font-size: 1.25rem;
+}
+
+.schedule-selection {
+    width: 90%;
+    background-color: #1616166b;
+    margin: auto;
+    border-radius: 1rem;
+    height: 3rem;
+    display: flex;
+    align-items: center!important;
+    justify-content: center;
+}
+
+.selection {
+    width: 33.33%;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: 1rem!important;
+    display: flex;
+    align-items: center!important;
+    justify-content: center;
+    border: none!important;
+}
+
+.btn-check:active + .btn, .btn-check:checked + .btn, .btn.active, .btn.show, .btn:active {
+    background-color: #C44a35!important;
+    border: none;
+    box-shadow: 0px 1px 5px -1px #53231a;
+}
+
+
+.selection:hover {
+    background-color: #C44a35!important;
+    border: none!important;
+}
+
+.container-cards {
+    max-width: 100vw;
+}
+
+.card-event {
+    background-color: #1616166b;
+    border-radius: 1rem;
+    margin: auto;
+    margin-top: 1.5rem;
+    position: relative;
+    width: 90%;
+    height: 9rem;
+}
+
+.card-mark {
+    background-color: #C44a35;
+    width: 8px;
+    position: absolute;
+    height: 70%;
+    left: -1px;
+    border-radius: 0.5rem;
+}
+
+.buttons-event {
+ height: 100%;
+ height: 9rem;
+}
+
+.button-more {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.container-event-map {
+    width:100vw;
+    height: 60%;
+    max-height: 100vh;
+}
+
+.event-map {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-body {
+    background-color: #ded3d1;
+    border-radius: 1.5rem 1.5rem 0 0;
+    position: sticky;
+   
+   
+}
