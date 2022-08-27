@@ -13,82 +13,84 @@
 
 <body class="container-fluid p-0">
 
-    <div class="container-phone p-0 m-0">
+    <div class="container-phone p-0 m-0" id="app">
         <header class="header-schedule">
             <h1 class="title-schedule me-3 mt-2 ps-2">Events</h1>
-            <form class="schedule-selection" @click="mostrar">
-                <input type="radio" name="schedule-selection" v-model="period" value="all" class="btn-check" id="all" autocomplete="off">
+            <form class="schedule-selection">
+                <input type="radio" name="schedule-selection" v-model="period" value="all" class="btn-check" id="all"
+                    autocomplete="off">
                 <label class="btn selection all d-flex align-items-center" for="all">ALL</label>
-                <input type="radio" name="schedule-selection" v-model="period" value="month" class="btn-check" id="month" autocomplete="off">
+                <input type="radio" name="schedule-selection" v-model="period" value="month" class="btn-check"
+                    id="month" autocomplete="off">
                 <label class="btn selection month d-flex align-items-center" for="month">MONTH</label>
-                <input type="radio" name="schedule-selection" v-model="period" value="week" class="btn-check" id="week" autocomplete="off">
+                <input type="radio" name="schedule-selection" v-model="period" value="week" class="btn-check" id="week"
+                    autocomplete="off">
                 <label class="btn selection week d-flex align-items-center" for="week">WEEK</label>
-                <span>{{period}}</span>
                 <!-- <span class="selection all">ALL</span>
             
             <span class="selection month">MONTH</span>
             <span class="selection week">WEEK</span> -->
             </form>
         </header>
-        <main class="main-schedule container-fluid p-0"  id="app">
-            <div class="container-schedule" v-for="event in events">
-            <div class="card-event d-flex justify-content-between align-items-center">
-                <div class="card-mark"></div>
-                <div class="info-event ps-4 pt-3">
-                    <h2>{{event.teams}}</h2>
-                    <p>{{event.location}}</p>
-                    <p>{{event.date}}</p>
-                </div>
-                <div class="buttons-event d-flex flex-column justify-content-around pe-3">
-                    <!--BUTTON-->
-                    <button type="button" class="button-more" data-bs-toggle="modal" :data-bs-target="event.tagid">
+        <main class="main-schedule container-fluid p-0 mb-5" id="app">
+            <div class="container-schedule" v-for="event in eventsFiltered">
+                {{filterByPeriod}}
+                <div class="card-event d-flex justify-content-between align-items-center">
+                    <div class="card-mark"></div>
+                    <div class="info-event ps-4 pt-3">
+                        <h3>{{event.teams}}</h3>
+                        <p>{{event.location}}</p>
+                        <p>{{event.date}}</p>
+                    </div>
+                    <div class="buttons-event d-flex flex-column justify-content-around pe-3">
+                        <!--BUTTON-->
+                        <button type="button" class="button-normalize" data-bs-toggle="modal"
+                            :data-bs-target="event.tagid">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                            </svg>
+                        </button>
+
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            class="bi bi-bell-fill" viewBox="0 0 16 16">
                             <path
-                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                         </svg>
-                    </button>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-bell-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                    </svg>
-
+                    </div>
                 </div>
-            </div>
-            <!--MODAL CARD-->
-            <div class="modal fade" :id="event.id" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="container-event-map">
-                            <iframe class="event-map"
-                                :src="event.src_map"
-                                style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                        <div class="modal-body">
-                            <div class="d-flex justify-content-around">
-                                <h4>{{event.teams}}</h4>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-bell-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                </svg>
+                <!--MODAL CARD-->
+                <div class="modal fade" :id="event.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="container-event-map">
+                                <iframe class="event-map" :src="event.src_map" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
-                            <span>{{event.location}}</span>
-                            <span>{{event.date}}</span>
-                            <p class="text-center">{{event.address}}</p>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-around">
+                                    <h4>{{event.teams}}</h4>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                    </svg>
+                                </div>
+                                <span>{{event.location}}</span>
+                                <span>{{event.date}}</span>
+                                <p class="text-center">{{event.address}}</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </main>
         <nav class="nav-bar d-flex align-items-center">
             <a href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -110,7 +112,7 @@
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 </svg></a>
         </nav>
-        
+
     </div>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

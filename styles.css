@@ -51,7 +51,6 @@ body {
     background-size: cover;
     height:85%;
     background-position-x: 50%;
-   
 }
 
 .title-home {
@@ -128,11 +127,13 @@ body {
 
 .main-schedule {
     margin-top: 7rem;
-    margin-bottom: 4rem;
+    margin-bottom: 12rem;
     max-width: 100vw;
     width: 100vw;
 }
-
+/* .container-schedule {
+    margin-bottom: 5rem;
+} */
 .title-schedule {
     width: 100%;
     font-size: 1.25rem;
@@ -191,7 +192,7 @@ body {
     width: 8px;
     position: absolute;
     height: 70%;
-    left: -1px;
+    
     border-radius: 0.5rem;
 }
 
@@ -200,7 +201,7 @@ body {
  height: 9rem;
 }
 
-.button-more {
+.button-normalize {
     background: none;
 	color: inherit;
 	border: none;
