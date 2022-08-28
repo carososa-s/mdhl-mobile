@@ -33,64 +33,82 @@
             </form>
         </header>
         <main class="main-schedule container-fluid p-0 mb-5" id="app">
-            <div class="container-schedule" v-for="event in eventsFiltered">
-                {{filterByPeriod}}
-                <div class="card-event d-flex justify-content-between align-items-center">
-                    <div class="card-mark"></div>
-                    <div class="info-event ps-4 pt-3">
-                        <h3>{{event.teams}}</h3>
-                        <p>{{event.location}}</p>
-                        <p>{{event.date}}</p>
-                    </div>
-                    <div class="buttons-event d-flex flex-column justify-content-around pe-3">
-                        <!--BUTTON-->
-                        <button type="button" class="button-normalize" data-bs-toggle="modal"
-                            :data-bs-target="event.tagid">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                <path
-                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                            </svg>
-                        </button>
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-bell-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                        </svg>
-
+            <template v-if="eventsFiltered.length == 0">
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
-                <!--MODAL CARD-->
-                <div class="modal fade" :id="event.id" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-fullscreen">
-                        <div class="modal-content">
-                            <div class="container-event-map">
-                                <iframe class="event-map" :src="event.src_map" style="border:0;" allowfullscreen=""
-                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                            <div class="modal-body">
-                                <div class="d-flex justify-content-around">
-                                    <h4>{{event.teams}}</h4>
+            </template>
+            <template v-else>
+                <div class="container-schedule" v-for="event in eventsFiltered">
+                    {{filterByPeriod}}
+                    <div class="card-event d-flex justify-content-between align-items-center">
+                        <div class="card-mark"></div>
+                        <div class="info-event ps-4 pt-3">
+                            <h3>{{event.teams}}</h3>
+                            <p>{{event.location}}</p>
+                            <p>{{event.date}}</p>
+                        </div>
+                        <div class="buttons-event d-flex flex-column justify-content-around pe-3">
+                            <!--BUTTON-->
+                            <button type="button" class="button-normalize" data-bs-toggle="modal"
+                                :data-bs-target="event.tagid">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                </svg>
+                            </button>
+                            <button class="button-normalize" v-if="event.add" @click="addReminder(event)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-bell" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                                </svg>
+                            </button>
+                            <button class="button-normalize" v-else @click="deleteReminder(event)">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-bell-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                                    </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!--MODAL CARD-->
+                    <div class="modal fade" :id="event.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="container-event-map">
+                                    <iframe class="event-map" :src="event.src_map" style="border:0;" allowfullscreen=""
+                                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
-                                <span>{{event.location}}</span>
-                                <span>{{event.date}}</span>
-                                <p class="text-center">{{event.address}}</p>
-                            </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-around">
+                                        <h4>{{event.teams}}</h4>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                        </svg>
+                                    </div>
+                                    <span>{{event.location}}</span>
+                                    <span>{{event.date}}</span>
+                                    <p class="text-center">{{event.address}}</p>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go
+                                        back</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </main>
         <nav class="nav-bar d-flex align-items-center">
             <a href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
