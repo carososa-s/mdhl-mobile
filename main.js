@@ -1,10 +1,3 @@
-const audio = new Audio("./click-sound.wav");
-let buttonHome = document.querySelector(".sound-icon")
-
-buttonHome.addEventListener("click", () => {
-  navigator.vibrate(500);
-})
-
 const { createApp } = Vue
 
 createApp({
@@ -47,6 +40,9 @@ createApp({
       console.log(this.reminders)
       console.log(this.eventsFiltered)
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
+    },
+    vibrate: function(ms) {
+      navigator.vibrate(ms);
     }
 
   },
