@@ -10,6 +10,7 @@ const schedule = {
                 time: "9:30 a.m.",
                 address: "24 W Walton St, Chicago, IL 60610, Estados Unidos",
                 src_map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.657203837994!2d-87.63126344968316!3d41.90022877911849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f69da7%3A0x15e198c063fc787c!2sAJ%20Katzenmaier%20Elementary!5e0!3m2!1ses!2sar!4v1661471708660!5m2!1ses!2sar"
+               
             },
             {
                 id: "aa02",
