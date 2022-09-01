@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link href="../public/styles.css" rel="stylesheet" type="text/css" />
+  <link href="./styles.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
@@ -30,10 +30,10 @@
     <div class="modal" id="notifications" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-fullscreen">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel">Notifications</h5>
+          <div class="modal-header p-0">
+            <h5 class="title-schedule" id="exampleModalToggleLabel">Notifications</h5>
           </div>
-          <div class="modal-body">
+          <div class="modal-body p-0">
             <div class="container-schedule" v-for="eve in reminders">
               <div class="card-event d-flex justify-content-between align-items-center">
                 <div class="card-mark"></div>
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+            <button type="button" class="button-normalize" data-bs-dismiss="modal">Go back</button>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
               <h4 class="text-center">{{eve.teams}}</h4>
               <div class="d-flex justify-content-between mt-5">
 
-                <span>{{eve.date }}{{"-"}}{{ eve.time}}</span>
+                <span>{{eve.date }}{{" - "}}{{ eve.time}}</span>
 
                 <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell"
@@ -111,7 +111,7 @@
               <p class="text-center mt-4">{{eve.address}}</p>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <button class="btn btn-primary" data-bs-target="#notifications" data-bs-toggle="modal">Go back</button>
+              <button class="button-normalize" data-bs-target="#notifications" data-bs-toggle="modal">Go back</button>
             </div>
           </div>
         </div>
@@ -124,21 +124,21 @@
         <h2 class="ms-2">SEE WHAT EVENTS <br> ARE COMING</h2>
       </div>
       <div class="container-info">
-        <h2 type="button" data-bs-toggle="modal" data-bs-target="#modal_rules" class="important-info rules">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal_rules" class="button-normalize important-info rules">
           RULES
-        </h2>
-        <h2 class="important-info contact mt-4">
+        </button>
+        <button class="button-normalize important-info contact mt-4">
           CONTACT
         </h2>
-      </div>
+      </button>
       <div class="modal" id="modal_rules" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
+            <div class="modal-header p-0">
+              <h5 class="title-schedule" id="exampleModalLabel">Rules</h5>
 
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-0">
               <div id="rules">
                 <h2>Sportsmanship</h2>
                 <ul>
@@ -434,14 +434,14 @@
           <path fill-rule="evenodd"
             d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
         </svg></a>
-      <a href="../public/schedule.html" type="button" @click="vibrate(500)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+      <a href="./schedule.html" type="button" @click="vibrate(500)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
           class="sound-icon iconos-nav bi bi-calendar-date" viewBox="0 0 16 16">
           <path
             d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
           <path
             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
         </svg></a>
-      <a href="../public/user.html" type="button" @click="vibrate(500)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
+      <a href="./user.html" type="button" @click="vibrate(500)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
           viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg></a>
@@ -471,8 +471,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-  <script src="../public/schedule.js"></script>
-  <script src="../public/main.js"></script>
+  <script src="./schedule.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 

@@ -159,8 +159,12 @@ body {
 }
 
 .title-schedule {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+ 
 }
 
 .schedule-selection {
@@ -233,8 +237,6 @@ body {
     height: 9rem;
 }
 
-
-
 .container-event-map {
     width: 100vw;
     height: 60%;
@@ -244,4 +246,46 @@ body {
 .event-map {
     width: 100%;
     height: 100%;
+}
+
+
+.main-account {
+    height: 90%;
+}
+
+
+.log-out {
+    font-size: 1.125rem;
+}
+
+ .container-user-image {
+    position: relative;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+ }
+
+.user-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position:absolute;
+
+}
+
+.bi-plus-circle-fill {
+    position: absolute;
+    top: 115px;
+    left: 10px;
+}
+
+.container-register {
+border-top: 1px solid gray;
+}
+
+.button-register {
+    background-color: #C44a35;
+    border-radius: 1rem;
+    padding: 20px;
+    margin: auto;
 }
