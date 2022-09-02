@@ -177,7 +177,13 @@ body {
     align-items: center !important;
     justify-content: center;
 }
-
+ol, ul {
+    padding-left: 0.5rem!important;
+}
+.title-rules {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
 .selection {
     width: 33.33%;
     height: 3rem;
@@ -188,7 +194,30 @@ body {
     justify-content: center;
     border: none !important;
 }
+.container-input {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 0.5rem;
+}
+.button-form {
+    padding: 0 1rem;
+    border:none!important;
+    border-radius: 1rem!important;
+    background-color: gray!important;
+    color: white!important;
+    margin-bottom: 1rem!important;
+    
+}
+.form-control {
+    padding: 0.25rem 0.50rem!important;
+    margin-bottom: 0.75rem!important;
+}
 
+legend {
+    font-size: 1.125rem!important;
+    margin-bottom: 0!important;
+}
 .btn-check:active+.btn,
 .btn-check:checked+.btn,
 .btn.active,
