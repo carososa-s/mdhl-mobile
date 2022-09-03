@@ -20,8 +20,12 @@ body {
     max-height: 100vh;
     font-family: Poppins !important;
     scrollbar-width: none;
+    
 }
-
+.body {
+    max-height: 100vh;
+    overflow: hidden;
+}
 .button-normalize {
     background: none;
     color: inherit;
@@ -30,10 +34,11 @@ body {
     font: inherit;
     cursor: pointer;
     outline: inherit;
+
 }
 
 .container-phone {
-    background-color: white;
+    background-color: rgb(250, 247, 243);
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
@@ -96,6 +101,7 @@ body {
     padding: 2rem;
     width: 80%;
     text-align: center;
+    color: white;
 
 }
 
@@ -110,8 +116,10 @@ body {
 }
 
 .nav-bar {
-    background: rgb(95, 161, 153);
-    background: linear-gradient(0deg, rgba(95, 161, 153, 1) 0%, rgba(150, 184, 115, 1) 36%, rgba(184, 198, 91, 1) 65%, rgba(224, 200, 6, 1) 100%, rgba(224, 199, 2, 1) 100%, rgba(229, 204, 6, 1) 130%);
+    /* background: rgb(196,74,53);
+background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(218,197,31,1) 100%); */
+background: rgb(196,74,53);
+background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%);
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -201,7 +209,7 @@ ol, ul {
     gap: 0 0.5rem;
 }
 .button-form {
-    padding: 0 1rem;
+    padding: 0.15rem 1rem 0rem 1rem!important;
     border:none!important;
     border-radius: 1rem!important;
     background-color: gray!important;
@@ -209,10 +217,7 @@ ol, ul {
     margin-bottom: 1rem!important;
     
 }
-.form-control {
-    padding: 0.25rem 0.50rem!important;
-    margin-bottom: 0.75rem!important;
-}
+
 
 legend {
     font-size: 1.125rem!important;
@@ -223,11 +228,15 @@ legend {
 .btn.active,
 .btn.show,
 .btn:active {
-    background-color: #C44a35 !important;
+    background: rgb(196,74,53)!important;
+background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)!important;
     border: none;
     box-shadow: 0px 1px 5px -1px #53231a;
+    color: white;
 }
-
+.selection {
+    color: white!important;
+}
 
 .selection:hover {
     background-color: #C44a35 !important;
@@ -247,6 +256,22 @@ legend {
     width: 90%;
     height: 9rem;
 }
+.card-event-notification  {
+    background-color: #1616166b;
+    border-radius: 1rem;
+    margin: auto;
+    margin-top: 1.5rem;
+    position: relative;
+    width: 90%;
+    height: 10rem;
+}
+a {
+    text-decoration: none!important;
+}
+.event-reason {
+    border-bottom: 1px solid #C44a35!important;
+    padding: 0.5rem!important;
+}
 
 .title-card {
     font-size: 1.25rem;
@@ -265,6 +290,10 @@ legend {
     height: 100%;
     height: 9rem;
 }
+.buttons-event-notifications {
+   height: 100%;
+   height: 6rem;
+}
 
 .container-event-map {
     width: 100vw;
@@ -277,7 +306,14 @@ legend {
     height: 100%;
 }
 
+.img-login {
+    width: 250px;
+    
 
+}
+.title-login {
+    width: 100vw;
+}
 .main-account {
     height: 90%;
 }
@@ -290,8 +326,8 @@ legend {
  .container-user-image {
     position: relative;
     margin: auto;
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
  }
 
 .user-image {
@@ -304,17 +340,62 @@ legend {
 
 .bi-plus-circle-fill {
     position: absolute;
-    top: 115px;
+    top: 100px;
     left: 10px;
 }
 
-.container-register {
-border-top: 1px solid gray;
+.personal-data,
+.user-preferences {
+    width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0px 1px 5px -1px #53231a;
+    margin: auto;
+    background-color: white;
+    padding: 1rem;
+}
+
+.form-control {
+    padding: 0!important;
+    margin-bottom: 0.75rem!important;
+    border: none!important;
+    color: gray!important;
+}
+
+.form-check-input:checked {
+    background: rgb(196,74,53)!important;
+    background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)!important;
+    border-color: #C44a35!important;
+}
+
+.button-save {
+    font-weight: normal;
+    color: gray;
+    font-size: 1rem;
+}
+
+.button-gender {
+    padding: 0 1rem!important;
+    border:none!important;
+    border-radius: 1rem!important;
+    background-color: gray!important;
+    color: white!important;
+}
+
+.text-register {
+    color: gray;
 }
 
 .button-register {
-    background-color: #C44a35;
-    border-radius: 1rem;
-    padding: 20px;
-    margin: auto;
+    color: black;
+    font-weight: bold;
+}
+
+.button-login {
+    background: rgb(196,74,53);
+background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%);
+border: none;
+padding: 1rem;
+border-radius: 1.75rem;
+color: white;
+
 }

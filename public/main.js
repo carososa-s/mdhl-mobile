@@ -6,11 +6,23 @@ createApp({
       events: [],
       eventsFiltered: [],
       period: "all",
-      reminders: []
+      reminders: [],
+      conditionInput: true,
+      placeName: "example",
+      placeLastName: "example",
+      placeAge: "0",
+      placeGender: "example",
+      name: "",
+      lastName: "",
+      gender: "",
+      age: "",
+      vibration: false,
+      logged: false,
     }
   },
   created() {
     this.reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+    this.logged = JSON.parse(localStorage.getItem('logged'));
     this.events = Array.from(schedule.events);
     for (eve of this.events) {
       if (!this.reminders?.some(ev => ev.id === eve.id)) {
@@ -20,7 +32,10 @@ createApp({
       }
     }
     this.eventsFiltered = this.events;
-    
+    this.name = this.placeName;
+      this.lastName = this.placeLastName;
+      this.gender = this.placeGender;
+      this.age = this.placeAge;
     
   },
   methods: {
@@ -42,9 +57,30 @@ createApp({
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
     },
     vibrate: function(ms) {
-      navigator.vibrate(ms);
+      if(!this.vibration) {
+        navigator.vibrate(ms);
+      }
+      
+    },
+    enableEdition: function() {
+      this.conditionInput = false;
+    
+    },
+    saveChanges: function() {
+      this.conditionInput = true;
+      this.placeName = this.name;
+      this.placeLastName = this.lastName;
+      this.placeAge = this.age;
+      this.placeGender = this.gender;
+    },
+    login: function() {
+      this.logged = true;
+      localStorage.setItem('logged', JSON.stringify(this.logged));
+    },
+    logout: function() {
+      this.logged = false;
+      localStorage.setItem('logged', JSON.stringify(this.logged));
     }
-
   },
   computed: {
     filterByPeriod: function () {

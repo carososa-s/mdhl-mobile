@@ -35,14 +35,17 @@
           </div>
           <div class="modal-body p-0">
             <div class="container-schedule" v-for="eve in reminders">
-              <div class="card-event d-flex justify-content-between align-items-center">
-                <div class="card-mark"></div>
-                <div class="info-event ps-4 pt-3">
-                  <h3>{{eve.teams}}</h3>
+              <div class="card-event-notification">
+                <p class="m-0 event-reason text-center">{{eve.reason}}</p>
+                 <div class="mb-0 d-flex justify-content-between align-items-center pt-2">
+         
+                <div class="info-event ps-4 pt-1">
+                 
+                  <h3 class="title-rules">{{eve.teams}}</h3>
                   <p>{{eve.location}}</p>
-                  <p>{{eve.date}}</p>
+                  <p class="mb-0">{{eve.date}}</p>
                 </div>
-                <div class="buttons-event d-flex flex-column justify-content-around pe-3">
+                <div class="buttons-event-notifications d-flex flex-column justify-content-between pe-3">
                   <!--BUTTON-->
                   <button type="button" class="button-normalize" data-bs-toggle="modal" :data-bs-target="eve.tagid">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -68,6 +71,7 @@
                     </svg>
                   </button>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -132,7 +136,7 @@
           CONTACT
         </button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#register_player"
-          class="button-normalize important-info rules mt-4">
+          class="button-normalize important-info rules my-4">
           REGISTER PLAYER
         </button>
         <div class="modal" id="register_player" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -653,21 +657,21 @@
 
     </main>
     <nav class="nav-bar d-flex align-items-center">
-      <a href="#" type="button" @click="vibrate(100)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+      <a href="#" type="button" @click="vibrate(50)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
           class="sound-icon iconos-nav bi bi-house-fill" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
           <path fill-rule="evenodd"
             d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
         </svg></a>
-      <a href="./schedule.html" type="button" @click="vibrate(100)"><svg xmlns="http://www.w3.org/2000/svg"
+      <a href="./schedule.html" type="button" @click="vibrate(50)"><svg xmlns="http://www.w3.org/2000/svg"
           fill="currentColor" class="sound-icon iconos-nav bi bi-calendar-date" viewBox="0 0 16 16">
           <path
             d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
           <path
             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
         </svg></a>
-      <a href="./user.html" type="button" @click="vibrate(100)"><svg xmlns="http://www.w3.org/2000/svg"
+      <a href="./user.html" type="button" @click="vibrate(50)"><svg xmlns="http://www.w3.org/2000/svg"
           fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill" viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg></a>
