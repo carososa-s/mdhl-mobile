@@ -18,11 +18,15 @@ createApp({
       age: "",
       vibration: false,
       logged: false,
+      sound: false,
+      clickSound: new Audio("./assets/sound/pop-sound.mp3")
     }
   },
   created() {
     this.reminders = JSON.parse(localStorage.getItem('reminders')) || [];
     this.logged = JSON.parse(localStorage.getItem('logged'));
+    this.sound = JSON.parse(localStorage.getItem('clicksound'));
+    this.vibration = JSON.parse(localStorage.getItem('vibration'));
     this.events = Array.from(schedule.events);
     for (eve of this.events) {
       if (!this.reminders?.some(ev => ev.id === eve.id)) {
@@ -57,9 +61,16 @@ createApp({
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
     },
     vibrate: function(ms) {
+    
       if(!this.vibration) {
         navigator.vibrate(ms);
+        localStorage.setItem('vibration', JSON.stringify(this.vibration));
+      } 
+      if(this.sound) {
+        this.clickSound.play();
+        localStorage.setItem('clicksound', JSON.stringify(this.sound));
       }
+
       
     },
     enableEdition: function() {

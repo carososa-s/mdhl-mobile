@@ -11,7 +11,7 @@
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
 <body>
-  <div class="container-phone p-0 m-0" id="app">
+  <div class="container-phone d-flex flex-column justify-content-between p-0 m-0" id="app">
     <header class="header-home">
       <div class="top d-flex align-items-center p-2">
         <div class="container-user-img me-2"></div>
@@ -31,12 +31,12 @@
       <div class="modal-dialog modal-dialog-centered modal-fullscreen">
         <div class="modal-content">
           <div class="modal-header p-0">
-            <h5 class="title-schedule" id="exampleModalToggleLabel">Notifications</h5>
+            <h5 class="title-schedule  ps-3" id="exampleModalToggleLabel">Notifications</h5>
           </div>
-          <div class="modal-body modal-body-event p-0">
+          <div class="modal-body p-0">
             <div class="container-schedule" v-for="eve in reminders">
               <div class="card-event-notification">
-                <p class="m-0 event-reason text-center">{{eve.reason}}</p>
+                <p class="m-0 event-reason text-light text-center">{{eve.reason}}</p>
                 <div class="mb-0 d-flex justify-content-between align-items-center pt-2">
 
                   <div class="info-event ps-4 pt-1">
@@ -90,28 +90,28 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="modal-body modal-body-event">
-              <h4 class="text-center">{{eve.teams}}</h4>
-              <div class="d-flex justify-content-between mt-5">
+              <h4 class="text-center title-modal">{{eve.teams}}</h4>
+              <div class="d-flex justify-content-between mt-4">
 
-                <span>{{eve.date }}{{" - "}}{{ eve.time}}</span>
+                  <span>{{eve.date }}{{" - "}}{{ eve.time}}</span>
 
-                <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                  </svg>
-                </button>
-                <button v-else class="button-normalize" @click="deleteReminder(eve)">
+                  <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="#c44a35" class="bi bi-bell" viewBox="0 0 16 16">
+                          <path
+                              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                      </svg>
+                  </button>
+                  <button v-else class="button-normalize" @click="deleteReminder(eve)">
 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-bell-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                  </svg>
-                </button>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                          fill="#c44a35" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                          <path
+                              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                      </svg>
+                  </button>
               </div>
-              <p class="text-center mt-5">{{eve.location}}</p>
+              <p class="text-center mt-3">{{eve.location}}</p>
               <p class="text-center mt-4">{{eve.address}}</p>
             </div>
             <div class="modal-footer d-flex justify-content-center">
@@ -122,34 +122,33 @@
         </div>
       </div>
     </div>
-    <main class="main d-flex flex-column justify-content-around">
-
-      <div>
+    <main class="main">
+      <div class="container-title-home">
         <h1 class="title-home me-3 mt-2">MDHL</h1>
-        <h2 class="ms-2">SEE WHAT EVENTS <br> ARE COMING</h2>
+        <h2 class="h-see">SEE WHAT EVENTS</h2> <h2 class="h-coming"> ARE COMING</h2>
       </div>
       <div class="container-info">
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal_rules"
           class="button-normalize important-info rules">
           RULES
         </button>
-        <button class="button-normalize important-info contact mt-4">
+        <button class="button-normalize important-info contact">
           CONTACT
         </button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#register_player"
-          class="button-normalize important-info rules my-4">
+          class="button-normalize important-info rules">
           REGISTER PLAYER
         </button>
         <div class="modal" id="register_player" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
               <div class="modal-header p-0">
-                <h5 class="title-schedule" id="exampleModalLabel">Register player</h5>
+                <h5 class="title-schedule ps-3" id="exampleModalLabel">Register player</h5>
 
               </div>
-              <div class="modal-body p-2">
-                <form method="get" action="show_data.html">
-                  <div class="stylized">
+              <div class="modal-body p-3">
+                <form method="get">
+                  <div class="d-flex flex-column align-items-center">
                     <label for="first_name">Player's First Name</label>
                     <input type="text" class="form-control mb-2" name="first_name" id="first_name" />
                     <label for="last_name">Last Name</label>
@@ -169,9 +168,9 @@
                     <label for="contact_email">Contact Email</label>
                     <input type="text" class="form-control" name="contact_email" id="contact_email" />
                   </div>
-                  <fieldset class="d-flex flex-column">
-                    <legend class="">Gender</legend>
-                    <div>
+                  <fieldset class="d-flex flex-column align-items-center">
+                    <legend class="text-center">Gender</legend>
+                    <div class="container-input">
                       <input type="radio" class="btn-check" name="gender" value="female" id="female" autocomplete="off">
                       <label class="btn button-form me-2" for="female">Female</label>
                       <input type="radio" class="btn-check" name="gender" value="male" id="male" autocomplete="off">
@@ -184,7 +183,7 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend>Grade</legend>
+                    <legend class="text-center">Grade</legend>
                     <div class="container-input">
                       <input type="radio" class="btn-check" name="grade" value="pre_school" id="pre_school"
                         autocomplete="off">
@@ -203,7 +202,7 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend class="mb-1">Which elementary schools do you live near?</legend>
+                    <legend class="mb-1 text-center">Which elementary schools do you live near?</legend>
                     <label for="school_1" class="impinfo">First Closest School:</label>
                     <select class="form-select mb-3" name="school_1" id="school_1">
                       <option value="katzenmaier">AJ Katzenmaier</option>
@@ -226,7 +225,7 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend>What position(s) do you normally play? <span class="note">(check all that apply)</span>
+                    <legend class="text-center">What position(s) do you normally play? <span class="note">(check all that apply)</span>
                     </legend>
 
                     <div class="container-input">
@@ -246,7 +245,7 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend>What position(s) do you want to play? <span class="note">(check all that apply)</span>
+                    <legend class="text-center">What position(s) do you want to play? <span class="note">(check all that apply)</span>
                     </legend>
                     <div class="container-input">
                       <input type="checkbox" name="wanted_position" class="btn-check" value="w_forward" id="w_forward"
@@ -264,7 +263,7 @@
                     </div>
                   </fieldset>
                   <fieldset>
-                    <legend>Jersey Size</legend>
+                    <legend class="text-center">Jersey Size</legend>
                     <div class="container-input">
                       <input type="radio" class="btn-check" name="jersey_size" value="j_youth_small" id="j_youth_small"
                         autocomplete="off">
@@ -291,7 +290,7 @@
                   </fieldset>
 
                   <fieldset>
-                    <legend>Shorts Size</legend>
+                    <legend class="text-center">Shorts Size</legend>
                     <div class="container-input">
                       <input type="radio" class="btn-check" name="short_size" value="s_youth_small" id="s_youth_small"
                         autocomplete="off">
@@ -311,13 +310,13 @@
                       <input type="radio" class="btn-check" name="short_size" value="s_large" id="s_large"
                         autocomplete="off">
                       <label class="btn button-form" for="s_large">Large</label>
-                      <input type="radio" class="btn-check" name="short_size" value="s__extra_large" id="s__extra_large"
+                      <input type="radio" class="btn-check" name="short_size" value="s_extra_large" id="s_extra_large"
                         autocomplete="off">
                       <label class="btn button-form" for="s_extra_large">Extra-Large</label>
                     </div>
                   </fieldset>
 
-                  <h4>Permission to Play</h4>
+                  <h4 class="text-center normalize-h">Permission to Play</h4>
                   <div class="contract">
                     <p>
                       I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by
@@ -337,20 +336,20 @@
                       name
                       below, I also acknowledge that I have read the cancellation policy and agree to its terms.
                     </p>
-                    <p>
+                    <p class="text-center">
                       <label for="signature">Parent/Guardian Signature:</label>
                       <input class="form-control" type="text" name="signature" id="signature" />
                       <label for="sig_date">Date:</label>
                       <input class="form-control" type="text" name="sig_date" id="sig_date" />
                     </p>
                   </div>
-                  <p><input type="submit" /></p>
+                  <p class="text-center"><input type="submit" name="submit" value="Submit" placeholder="Send"/></p>
 
                 </form>
               </div>
               <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go back</button>
-                
+
               </div>
             </div>
           </div>
@@ -359,9 +358,9 @@
           <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
               <div class="modal-header p-0">
-                <h5 class="title-schedule" id="exampleModalLabel">Rules</h5>
+                <h5 class="title-schedule ps-3" id="exampleModalLabel">Rules</h5>
               </div>
-              <div class="modal-body">
+              <div class="modal-body p-3">
                 <div id="rules">
                   <h2 class="title-rules">Sportsmanship</h2>
                   <ul>
@@ -376,8 +375,8 @@
 
                   <h2 class="title-rules">Fifa Field Regulations</h2>
                   <ol>
-                    <li>
-                      <h3 class="title-rules">Dimensions.</h3> FIFA Law 1 provides for flexible external field
+                    <li class="mb-3">
+                      <h3 class="normalize-h mb-1">Dimensions.</h3> FIFA Law 1 provides for flexible external field
                       dimensions within a given
                       maximum and
                       minimum width and length. These dimensions should be adhered to for all fields used by teams under
@@ -385,8 +384,8 @@
                       older.
                     </li>
 
-                    <li>
-                      <h3 class="title-rules">Competition Fields.</h3> Fields used within the competition program must
+                    <li class="mb-3">
+                      <h3 class="normalize-h mb-1">Competition Fields.</h3> Fields used within the competition program must
                       be a minimum of 100 x
                       60 yards.
                       Leagues, districts or associations participating in the state competition program that are unable
@@ -400,8 +399,8 @@
                       acceptable field may be required to play all their games away.
                     </li>
 
-                    <li>
-                      <h3 class="title-rules">Fields Used By Young Age Groups.</h3>
+                    <li class="mb-3">
+                      <h3 class="normalize-h mb-3">Fields Used By Young Age Groups.</h3>
                       <ol type="a">
                         <li>U-6 play on a field approximately 20 X 40 yards with no penalty areas. Fields for older age
                           groups
@@ -414,8 +413,8 @@
                       </ol>
                     </li>
 
-                    <li>
-                      <h3 class="title-rules">Team Bench Areas</h3>
+                    <li class="mb-3">
+                      <h3 class="normalize-h mb-3">Team Bench Areas</h3>
                       <ol type="a">
                         <li>Recreation &amp; District Programs
                           <ul>
@@ -474,7 +473,7 @@
                   <h2 class="title-rules">Number of Players</h2>
                   <ul>
                     <li>
-                      <h3 class="title-rules">Team Size.</h3> Except as noted below, below, team rosters shall consist
+                      <h3 class="normalize-h">Team Size.</h3> Except as noted below, below, team rosters shall consist
                       of not less than
                       eleven nor
                       more than eighteen players. A team must have at least seven (7) players present and able to play
@@ -484,7 +483,7 @@
                       field at any one time during the game.
                     </li>
                     <li>
-                      <h3 class="title-rules">Size of Age Group Teams.</h3> In order to give player's maximum
+                      <h3 class="normalize-h">Size of Age Group Teams.</h3> In order to give player's maximum
                       opportunity to develop in the
                       game of
                       soccer, U-6 through U-1O play modified rules and size of roster as stated in United States Youth
@@ -564,13 +563,13 @@
                   <h2 class="title-rules">Mixed Teams</h2>
                   <ul>
                     <li>
-                      <h3 class="title-rules">Girls Playing On Boys' Teams.</h3> Girls are eligible to play on
+                      <h3 class="normalize-h">Girls Playing On Boys' Teams.</h3> Girls are eligible to play on
                       boys'teams with
                       parent/guardian
                       permission.
                     </li>
                     <li>
-                      <h3 class="title-rules">Types of Teams.</h3> Teams with females only are Girls Teams. All others
+                      <h3 class="normalize-h">Types of Teams.</h3> Teams with females only are Girls Teams. All others
                       are Boys Teams.
                     </li>
                   </ul>
@@ -658,7 +657,8 @@
         </div>
 
     </main>
-    <nav class="nav-bar d-flex align-items-center">
+    <div class="nav-bar"></div>
+    <nav class="nav-bar nav-bar-schedule d-flex align-items-center mt-2">
       <a href="#" type="button" @click="vibrate(50)"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
           class="sound-icon iconos-nav bi bi-house-fill" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
