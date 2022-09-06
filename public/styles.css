@@ -68,7 +68,7 @@ body {
     color: red;
     font-size: 30px;
     right: 2px;
-    top: -18px;
+    top: -17px;
 }
 
 .username {
@@ -170,8 +170,8 @@ background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)
     width: 90%;
     margin: auto;
     font-size: 1.25rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
  
 }
 
@@ -238,10 +238,10 @@ background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)
     color: white!important;
 }
 
-.selection:hover {
+/* .selection:hover {
     background-color: #C44a35 !important;
     border: none !important;
-}
+} */
 
 .container-cards {
     max-width: 100vw;
@@ -265,12 +265,13 @@ background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)
     width: 90%;
     height: 10rem;
 }
-a {
-    text-decoration: none!important;
-}
+
 .event-reason {
     border-bottom: 1px solid #C44a35!important;
     padding: 0.5rem!important;
+    background: rgb(196,74,53);
+    background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%);
+    border-radius: 1rem 1rem  0 0;
 }
 
 .title-card {
@@ -313,6 +314,7 @@ a {
 }
 .title-login {
     width: 100vw;
+    font-weight: bold;
 }
 .main-account {
     height: 90%;
@@ -326,8 +328,8 @@ a {
  .container-user-image {
     position: relative;
     margin: auto;
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
  }
 
 .user-image {
@@ -340,8 +342,8 @@ a {
 
 .bi-plus-circle-fill {
     position: absolute;
-    top: 100px;
-    left: 10px;
+    top: 80px;
+    left: 8px;
 }
 
 .personal-data,
@@ -358,12 +360,13 @@ a {
     padding: 0!important;
     margin-bottom: 0.75rem!important;
     border: none!important;
+    background-color: transparent!important;
     color: gray!important;
 }
 
 .form-check-input:checked {
-    background: rgb(196,74,53)!important;
-    background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%)!important;
+    background-color: #C44a35!important;
+   
     border-color: #C44a35!important;
 }
 
@@ -382,20 +385,69 @@ a {
 }
 
 .text-register {
-    color: gray;
+    color: rgb(51, 51, 51);
 }
 
 .button-register {
     color: black;
-    font-weight: bold;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none!important;
+    color: rgb(86, 86, 86)!important;
 }
 
 .button-login {
     background: rgb(196,74,53);
 background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(95,161,153,1) 100%);
 border: none;
-padding: 1rem;
+padding: 0.75rem;
 border-radius: 1.75rem;
-color: white;
+color: white!important;
 
+}
+
+.button-google {
+    background: gray;
+  
+    border: none;
+    padding: 0.75rem;
+    border-radius: 1.75rem;
+    color: white;
+   width: 100%;
+}
+
+.button-go-back {
+    background-color: #5fa199!important;
+    border-radius: 1rem!important;
+    padding: 0.5rem 2rem!important;
+    color: white!important;
+    
+}
+
+.modal-body-event {
+    overflow: hidden!important;
+}
+
+.modal-footer {
+    padding: 0.25rem!important;
+    border: none!important;
+}
+
+.modal-header {
+    border: none!important;
+}
+
+.input-login {
+    padding: 0.5rem!important;
+    border-radius: 1.5rem!important;
+}
+
+/* input:focus {
+    border: 2px solid #5fa199!important;
+} */
+
+.normalize-h {
+    font-size: 1.125rem;
 }
