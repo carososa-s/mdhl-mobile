@@ -25,6 +25,7 @@ body {
 
 .body {
     max-height: 100vh;
+    overflow-x: hidden;
 
 }
 
@@ -40,7 +41,7 @@ body {
 }
 
 .container-phone {
-    background-color:white!important;
+    background-color: white !important;
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
@@ -86,9 +87,11 @@ body {
     justify-content: space-between;
     flex-grow: 1;
 }
+
 .container-title-home {
     padding-left: 1rem;
 }
+
 .title-home {
     font-size: 50px;
     font-weight: bolder;
@@ -117,7 +120,7 @@ body {
 .rules {
     margin-left: auto;
     border-radius: 2rem 0 0 2rem !important;
-    
+
 }
 
 .contact {
@@ -174,7 +177,7 @@ background: linear-gradient(0deg, rgba(196,74,53,1) 0%, rgba(218,197,31,1) 100%)
 
 .main-schedule {
     margin-top: 6rem;
-    margin-bottom: 4rem!important;
+    margin-bottom: 4rem !important;
     max-width: 100vw;
     width: 100vw;
     padding-bottom: 4rem !important;
@@ -252,7 +255,7 @@ legend {
     background: linear-gradient(0deg, rgba(196, 74, 53, 1) 0%, rgba(95, 161, 153, 1) 100%) !important;
     border: none;
     box-shadow: 0px 1px 5px -1px #53231a;
-    color: white!important;
+    color: white !important;
 }
 
 
@@ -328,11 +331,11 @@ legend {
 }
 
 .container-img-login {
-    height: 30vh!important;
+    height: 30vh !important;
 }
 
 .img-login {
-height: 70%;
+    height: 70%;
 }
 
 .container-title-login {
@@ -388,12 +391,13 @@ height: 70%;
     border: none !important;
     background-color: #5fa19940 !important;
     color: gray !important;
-    border-radius: 1rem!important;
+    border-radius: 1rem !important;
     text-align: center;
 }
+
 .form-select {
-   background-color: #5fa19940 !important;
-   border-radius: 1rem!important;
+    background-color: #5fa19940 !important;
+    border-radius: 1rem !important;
 }
 
 .form-control-data {
@@ -471,7 +475,7 @@ a {
     background: rgb(196, 74, 53);
     background: linear-gradient(0deg, rgba(196, 74, 53, 1) 0%, rgba(95, 161, 153, 1) 100%);
     border-radius: 1rem !important;
-    padding:  0.5rem 3rem  0.4rem 3rem!important;
+    padding: 0.5rem 3rem 0.4rem 3rem !important;
     color: white !important;
 
 }
@@ -490,14 +494,14 @@ a {
     background: rgb(196, 74, 53);
     background: linear-gradient(0deg, rgba(196, 74, 53, 1) 0%, rgba(95, 161, 153, 1) 100%);
     color: white;
-    border-radius: 0 0 1rem 1rem!important;
+    border-radius: 0 0 1rem 1rem !important;
 }
 
 .input-login {
     padding: 0.5rem !important;
     border-radius: 1.5rem !important;
     border: 3px solid #5fa19991 !important;
-    background-color: transparent!important;
+    background-color: transparent !important;
 }
 
 /* input:focus {
@@ -525,6 +529,7 @@ a {
     flex-grow: 1;
     max-width: 100vw;
 }
+
 .main-login {
     display: flex;
     flex-direction: column;
@@ -534,10 +539,10 @@ a {
 
 input[type="submit"] {
     border-radius: 1rem !important;
-    padding:  0.5rem 3rem  0.4rem 3rem!important;
+    padding: 0.5rem 3rem 0.4rem 3rem !important;
     color: white !important;
-    border: none!important;
-    box-shadow: unset!important;
+    border: none !important;
+    box-shadow: unset !important;
     margin: auto;
     background-color: #C44a35;
 }
@@ -545,6 +550,16 @@ input[type="submit"] {
 .title-modal {
     border-bottom: 3px solid #c44a35b4;
     padding-bottom: 0.5rem;
+}
+
+.container-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.text-register {
+    margin: 1rem;
 }
 
 @media (orientation: landscape) {
@@ -578,7 +593,7 @@ input[type="submit"] {
     .container-info {
         width: 50%;
         max-height: 100%;
-        
+
     }
 
     .important-info {
@@ -598,10 +613,14 @@ input[type="submit"] {
     .h-see {
         margin: unset !important;
         padding-left: 1rem !important;
+        text-shadow: 1px 1px #C44a35, 2px 2px white;
+        color: #5fa199;
     }
 
     .h-coming {
         text-align: right !important;
+        text-shadow: 1px 1px #C44a35, 2px 2px white;
+        color: #5fa199;
     }
 
     /* .banner {
@@ -620,6 +639,13 @@ input[type="submit"] {
         width: 38%;
     }
 
+    .main-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .banner {
         height: 80%;
         border-radius: 1rem;
@@ -628,15 +654,50 @@ input[type="submit"] {
         justify-content: center;
         padding: 2.5rem 0;
     }
+
     .user-preferences {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
+
     .user-preferences,
     .banner {
         height: 70%;
         width: 28%;
         margin: unset;
+    }
+
+    .input-login {
+        padding: 0.40rem !important;
+        border-radius: 1.5rem !important;
+        border: 3px solid #5fa19991 !important;
+        background-color: transparent !important;
+    }
+
+    .header-login {
+        position: absolute !important;
+        top: 0 !important;
+    }
+
+    .button-login {
+        padding: 0.55rem !important;
+    }
+
+    .button-google {
+        padding: 0.55rem !important;
+    }
+
+    .text-register {
+        margin-bottom: 0px !important;
+    }
+
+    .img-login {
+        height: 50vh;
+    }
+
+    .main {
+        background-position-x: 50%;
+        background-position-y: 40%;
     }
 }

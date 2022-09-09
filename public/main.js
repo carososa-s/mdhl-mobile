@@ -19,7 +19,9 @@ createApp({
       vibration: false,
       logged: false,
       sound: false,
-      clickSound: new Audio("./assets/sound/pop-sound.mp3")
+      clickSound: new Audio("./assets/sound/pop-sound.mp3"),
+      page : "home",
+      detail: ""
     }
   },
   created() {
@@ -47,8 +49,6 @@ createApp({
       if (!this.reminders?.some(ev => ev.id === eve.id)) {
         this.reminders?.push(eve);
         eve.add = false;
-        console.log(this.reminders)
-        console.log(this.eventsFiltered)
         localStorage.setItem('reminders', JSON.stringify(this.reminders));
       }
       
@@ -56,8 +56,6 @@ createApp({
     deleteReminder: function (eve) {
       this.reminders = this.reminders.filter(ev => ev.id !== eve.id);
       eve.add = true;
-      console.log(this.reminders)
-      console.log(this.eventsFiltered)
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
     },
     vibrate: function(ms) {
@@ -91,6 +89,10 @@ createApp({
     logout: function() {
       this.logged = false;
       localStorage.setItem('logged', JSON.stringify(this.logged));
+    },
+    moreInfo: function(eve) {
+      this.detail = eve;
+      
     }
   },
   computed: {
@@ -98,15 +100,12 @@ createApp({
       //TODOS LOS EVENTOS
       if (this.period == "all") {
         this.eventsFiltered = this.events;
-        console.log(this.period)
       } else if (this.period == "month") { //FILTRA EVENTOS POR MES
         const actualDate = new Date();
         let month = actualDate.getMonth() + 1;
         month = 10; //Esta variable la asigno ya que solo hay partidos en el mes 9 y 10
         let regex = new RegExp(month + '/');
-        console.log(this.period)
         this.eventsFiltered = this.events.filter(events => regex.test(events.date));
-        console.log(this.eventsFiltered)
       } else if (this.period == "week") { //FILTRA EVENTOS DE LA SEMANA
         const actualDate = new Date();
         let month = actualDate.getMonth() + 1;
@@ -132,10 +131,8 @@ createApp({
         } else {
           regexDays = new RegExp('/' + '(' + startRange[0] + '[' + startRange[1] + '-' + '9' + ']|' + endRange[0] + '[' + '0' + '-' + endRange[1] + ']' + ')');
         }
-        console.log(this.period)
         
         this.eventsFiltered = eventsFilteredMonth.filter(events => regexDays.test(events.date));
-        console.log(this.eventsFiltered)
       }
     }
   }
