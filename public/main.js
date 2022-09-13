@@ -19,15 +19,18 @@ createApp({
       vibration: false,
       logged: false,
       sound: false,
+      darkMode: false,
       clickSound: new Audio("./assets/sound/pop-sound.mp3"),
-      page : "home",
-      detail: ""
+      page: "home",
+      detail: "",
+      loaded: false
     }
   },
   created() {
     this.reminders = JSON.parse(localStorage.getItem('reminders')) || [];
     this.logged = JSON.parse(localStorage.getItem('logged'));
     this.sound = JSON.parse(localStorage.getItem('clicksound'));
+    this.darkMode = JSON.parse(localStorage.getItem('darkMode'));
     this.vibration = JSON.parse(localStorage.getItem('vibration'));
     this.events = Array.from(schedule.events);
     for (eve of this.events) {
@@ -39,11 +42,12 @@ createApp({
     }
     this.eventsFiltered = this.events;
     this.name = this.placeName;
-      this.lastName = this.placeLastName;
-      this.gender = this.placeGender;
-      this.age = this.placeAge;
-    
+    this.lastName = this.placeLastName;
+    this.gender = this.placeGender;
+    this.age = this.placeAge;
+    this.loaded = true;
   },
+
   methods: {
     addReminder: function (eve) {
       if (!this.reminders?.some(ev => ev.id === eve.id)) {
@@ -51,48 +55,55 @@ createApp({
         eve.add = false;
         localStorage.setItem('reminders', JSON.stringify(this.reminders));
       }
-      
+
     },
     deleteReminder: function (eve) {
       this.reminders = this.reminders.filter(ev => ev.id !== eve.id);
       eve.add = true;
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
     },
-    vibrate: function(ms) {
-    
-      if(!this.vibration) {
+    darkModeSave: function() {
+      localStorage.setItem('darkMode', JSON.stringify(!this.darkMode));
+    },
+    vibrate: function (ms) {
+
+      if (!this.vibration) {
         navigator.vibrate(ms);
         localStorage.setItem('vibration', JSON.stringify(this.vibration));
-      } 
-      if(this.sound) {
+      } else {
+        localStorage.setItem('vibration', JSON.stringify(this.vibration));
+      }
+      if (this.sound) {
         this.clickSound.play();
+        localStorage.setItem('clicksound', JSON.stringify(this.sound));
+      } else {
         localStorage.setItem('clicksound', JSON.stringify(this.sound));
       }
 
-      
+
     },
-    enableEdition: function() {
+    enableEdition: function () {
       this.conditionInput = false;
-    
+
     },
-    saveChanges: function() {
+    saveChanges: function () {
       this.conditionInput = true;
       this.placeName = this.name;
       this.placeLastName = this.lastName;
       this.placeAge = this.age;
       this.placeGender = this.gender;
     },
-    login: function() {
+    login: function () {
       this.logged = true;
       localStorage.setItem('logged', JSON.stringify(this.logged));
     },
-    logout: function() {
+    logout: function () {
       this.logged = false;
       localStorage.setItem('logged', JSON.stringify(this.logged));
     },
-    moreInfo: function(eve) {
+    moreInfo: function (eve) {
       this.detail = eve;
-      
+
     }
   },
   computed: {
@@ -131,7 +142,7 @@ createApp({
         } else {
           regexDays = new RegExp('/' + '(' + startRange[0] + '[' + startRange[1] + '-' + '9' + ']|' + endRange[0] + '[' + '0' + '-' + endRange[1] + ']' + ')');
         }
-        
+
         this.eventsFiltered = eventsFilteredMonth.filter(events => regexDays.test(events.date));
       }
     }

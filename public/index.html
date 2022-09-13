@@ -12,845 +12,834 @@
 
 <body>
   <div id="app">
-    <div v-if="page === 'home'" class="container-phone d-flex flex-column justify-content-between p-0 m-0">
-      <header class="header-home">
-        <div class="top d-flex align-items-center p-2">
-          <div class="container-user-img me-2"></div>
-          <span class="username">Welcome</span>
-          <button type="button" class="button-normalize button-notifications ms-auto " data-bs-toggle="modal"
-            data-bs-target="#notifications">
-            <span v-if="reminders.length" class="dot-notifications">•</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell pb-1"
-              viewBox="0 0 16 16">
-              <path
-                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-            </svg>
-          </button>
-        </div>
-      </header>
-      <div class="modal" id="notifications" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-          <div class="modal-content">
-            <div class="modal-header p-0">
-              <h5 class="title-schedule  ps-3" id="exampleModalToggleLabel">Notifications</h5>
-            </div>
-            <div class="modal-body p-0">
-              <div class="container-schedule" v-for="eve in reminders">
-                <div class="card-event-notification">
-                  <p class="m-0 event-reason text-light text-center">{{eve.reason}}</p>
-                  <div class="mb-0 d-flex justify-content-between align-items-center pt-2">
+  
+    <div v-bind:class="{ 'dark-mode': darkMode, 'light-mode': !darkMode }">
+      <div v-if="page === 'home'" class="container-phone d-flex flex-column justify-content-between p-0 m-0">
+        <header class="header-home">
+          <div class="top d-flex align-items-center p-2">
+            <div class="container-user-img me-2"></div>
+            <span class="username">Welcome</span>
+            <button type="button" class="button-normalize button-notifications ms-auto " data-bs-toggle="modal"
+              data-bs-target="#notifications">
+              <span v-if="reminders.length" class="dot-notifications">•</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell pb-1"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div class="modal" id="notifications" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header p-0">
+                <h5 class="title-schedule  ps-3" id="exampleModalToggleLabel">Notifications</h5>
+              </div>
+              <div class="modal-body p-0 pb-1">
+                <div class="container-schedule" v-for="eve in reminders">
+                  <div class="card-event-notification">
+                    <p class="m-0 event-reason text-center">{{eve.reason}}</p>
+                    <div class="mb-0 d-flex justify-content-between align-items-center pt-2">
 
-                    <div class="info-event ps-4 pt-1">
+                      <div class="info-event ps-4 pt-1">
 
-                      <h3 class="title-rules">{{eve.teams}}</h3>
-                      <p>{{eve.location}}</p>
-                      <p class="mb-0">{{eve.date}}</p>
+                        <h3 class="title-rules">{{eve.teams}}</h3>
+                        <p>{{eve.location}}</p>
+                        <p class="mb-0">{{eve.date}}</p>
+                      </div>
+                      <div class="buttons-event-notifications d-flex flex-column justify-content-between pe-3">
+                        <!--BUTTON-->
+                        <button type="button" class="button-normalize" @click="moreInfo(eve)" data-bs-toggle="modal"
+                          data-bs-target="#more_info">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path
+                              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                          </svg>
+                        </button>
+
+                        <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bell" viewBox="0 0 16 16">
+                            <path
+                              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                          </svg>
+                        </button>
+                        <button class="button-normalize" v-else @click="deleteReminder(eve)">
+
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                    <div class="buttons-event-notifications d-flex flex-column justify-content-between pe-3">
-                      <!--BUTTON-->
-                      <button type="button" class="button-normalize" @click="moreInfo(eve)" data-bs-toggle="modal"
-                        data-bs-target="#more_info">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                          <path
-                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                        </svg>
-                      </button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go back</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                      <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-bell" viewBox="0 0 16 16">
+        <div class="modal" id="more_info" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content">
+              <div class="container-event-map">
+                <iframe class="event-map" :src="detail.src_map" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div class="modal-body modal-body-event">
+                <h4 class="text-center title-modal">{{detail.teams}}</h4>
+                <div class="d-flex justify-content-between mt-4">
+
+                  <span>{{detail.date }}{{" - "}}{{detail.time}}</span>
+
+                  <button class="button-normalize" v-if="detail.add" @click="addReminder(detail)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                    </svg>
+                  </button>
+                  <button v-else class="button-normalize" @click="deleteReminder(detail)">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35"
+                      class="bi bi-bell-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                    </svg>
+                  </button>
+                </div>
+                <p class="text-center mt-3">{{detail.location}}</p>
+                <p class="text-center mt-4">{{detail.address}}</p>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button class="button-normalize button-go-back" data-bs-target="#notifications"
+                  data-bs-toggle="modal">Go
+                  back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main class="main">
+          <div class="container-title-home">
+            <h1 class="title-home me-3 mt-2">MDHL</h1>
+            <h2 class="h-see">SEE WHAT EVENTS</h2>
+            <h2 class="h-coming"> ARE COMING</h2>
+          </div>
+          <div class="container-info">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modal_rules"
+              class="button-normalize important-info rules">
+              RULES
+            </button>
+            <button class="button-normalize important-info contact">
+              CONTACT
+            </button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#register_player"
+              class="button-normalize important-info rules">
+              REGISTER PLAYER
+            </button>
+            <div class="modal" id="register_player" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                  <div class="modal-header p-0">
+                    <h5 class="title-schedule ps-3" id="exampleModalLabel">Register player</h5>
+                  </div>
+                  <div class="modal-body p-3">
+                    <form method="get">
+                      <div class="d-flex flex-column align-items-center">
+                        <label for="first_name">Player's First Name</label>
+                        <input type="text" class="form-control mb-2" name="first_name" id="first_name" />
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control mb-2" name="last_name" id="last_name" />
+                        <label for="street_address">Street Address</label>
+                        <input type="text" class="form-control mb-2" name="street_address" id="street_address" />
+                        <label for="city">City</label>
+                        <input type="text" class="form-control mb-2" name="city" id="city" />
+                        <label for="zip">Zip Code</label>
+                        <input type="text" class="form-control" name="zip" id="zip" />
+                        <label for="birth_date">Birth Date</label>
+                        <input type="text" class="form-control" name="birth_date" id="birth_date" />
+                        <label for="parent_guardian">Parent/Guardian Name</label>
+                        <input type="text" class="form-control" name="parent_guardian" id="parent_guardian" />
+                        <label for="contact_phone">Contact Phone</label>
+                        <input type="text" class="form-control" name="contact_phone" id="contact_phone" />
+                        <label for="contact_email">Contact Email</label>
+                        <input type="text" class="form-control" name="contact_email" id="contact_email" />
+                      </div>
+                      <fieldset class="d-flex flex-column align-items-center">
+                        <legend class="text-center">Gender</legend>
+                        <div class="container-input">
+                          <input type="radio" class="btn-check" name="gender" value="female" id="female"
+                            autocomplete="off">
+                          <label class="btn button-form me-2" for="female">Female</label>
+                          <input type="radio" class="btn-check" name="gender" value="male" id="male" autocomplete="off">
+                          <label class="btn button-form" for="male">Male</label>
+                          <!-- <input type="radio" class="btn-check" name="gender" value="non_binary" id="non_binary" autocomplete="off">
+                    <label class="btn btn-secondary" for="non_binary">Non binary</label>
+                    <input type="radio" class="btn-check" name="gender" value="other" id="other" autocomplete="off">
+                    <label class="btn btn-secondary" for="other">Other</label> -->
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend class="text-center">Grade</legend>
+                        <div class="container-input">
+                          <input type="radio" class="btn-check" name="grade" value="pre_school" id="pre_school"
+                            autocomplete="off">
+                          <label class="btn button-form" for="pre_school">Pre-School</label>
+                          <input type="radio" class="btn-check" name="grade" value="1st" id="1st" autocomplete="off">
+                          <label class="btn button-form" for="1st">1st</label>
+                          <input type="radio" class="btn-check" name="grade" value="2nd" id="2nd" autocomplete="off">
+                          <label class="btn button-form" for="2nd">2nd</label>
+                          <input type="radio" class="btn-check" name="grade" value="3rd" id="3rd" autocomplete="off">
+                          <label class="btn button-form" for="3rd">3rd</label>
+                          <input type="radio" class="btn-check" name="grade" value="4th" id="4th" autocomplete="off">
+                          <label class="btn button-form" for="4th">4th</label>
+                          <input type="radio" class="btn-check" name="grade" value="5th" id="5th" autocomplete="off">
+                          <label class="btn button-form" for="5th">5th</label>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend class="mb-1 text-center">Which elementary schools do you live near?</legend>
+                        <label for="school_1" class="impinfo">First Closest School:</label>
+                        <select class="form-select mb-3" name="school_1" id="school_1">
+                          <option value="katzenmaier">AJ Katzenmaier</option>
+                          <option value="greenbay">Greenbay</option>
+                          <option value="yeager">Howard A Yeager</option>
+                          <option value="hart">Marjorie P Hart</option>
+                          <option value="north">North Elementary</option>
+                          <option value="south">South Elementary</option>
+                        </select>
+
+                        <label for="school_2" class="impinfo">Second Closest School:</label>
+                        <select class="form-select mb-3" name="school_2" id="school_2">
+                          <option value="katzenmaier">AJ Katzenmaier</option>
+                          <option value="greenbay">Greenbay</option>
+                          <option value="yeager">Howard A Yeager</option>
+                          <option value="hart">Marjorie P Hart</option>
+                          <option value="north">North Elementary</option>
+                          <option value="south">South Elementary</option>
+                        </select>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend class="text-center">What position(s) do you normally play? <span class="note">(check all
+                            that apply)</span>
+                        </legend>
+
+                        <div class="container-input">
+                          <input type="checkbox" name="actual_position" class="btn-check" value="a_forward"
+                            id="a_forward" autocomplete="off">
+                          <label class="btn button-form" for="a_forward">Forward</label>
+                          <input type="checkbox" name="actual_position" class="btn-check" value="a_defense"
+                            id="a_defense" autocomplete="off">
+                          <label class="btn button-form" for="a_defense">Defense</label>
+                          <input type="checkbox" name="actual_position" class="btn-check" value="a_midfield"
+                            id="a_midfield" autocomplete="off">
+                          <label class="btn button-form" for="a_midfield">Midfield</label>
+                          <input type="checkbox" name="actual_position" class="btn-check" value="a_goalkeeper"
+                            id="a_goalkeeper" autocomplete="off">
+                          <label class="btn button-form" for="a_goalkeeper">Goalkeeper</label>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend class="text-center">What position(s) do you want to play? <span class="note">(check all
+                            that apply)</span>
+                        </legend>
+                        <div class="container-input">
+                          <input type="checkbox" name="wanted_position" class="btn-check" value="w_forward"
+                            id="w_forward" autocomplete="off">
+                          <label class="btn button-form" for="w_forward">Forward</label>
+                          <input type="checkbox" name="wanted_position" class="btn-check" value="w_defense"
+                            id="w_defense" autocomplete="off">
+                          <label class="btn button-form" for="w_defense">Defense</label>
+                          <input type="checkbox" name="wanted_position" class="btn-check" value="w_midfield"
+                            id="w_midfield" autocomplete="off">
+                          <label class="btn button-form" for="w_midfield">Midfield</label>
+                          <input type="checkbox" name="wanted_position" class="btn-check" value="w_goalkeeper"
+                            id="w_goalkeeper" autocomplete="off">
+                          <label class="btn button-form" for="w_goalkeeper">Goalkeeper</label>
+                        </div>
+                      </fieldset>
+                      <fieldset>
+                        <legend class="text-center">Jersey Size</legend>
+                        <div class="container-input">
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_youth_small"
+                            id="j_youth_small" autocomplete="off">
+                          <label class="btn button-form " for="j_youth_small">Youth Small</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_youth_medium"
+                            id="j_youth_medium" autocomplete="off">
+                          <label class="btn button-form " for="j_youth_medium">Youth Medium</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_youth_large"
+                            id="j_youth_large" autocomplete="off">
+                          <label class="btn button-form" for="j_youth_large">Youth Large</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_small" id="j_small"
+                            autocomplete="off">
+                          <label class="btn button-form " for="j_small">Small</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_medium" id="j_medium"
+                            autocomplete="off">
+                          <label class="btn button-form" for="j_medium">Medium</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_large" id="j_large"
+                            autocomplete="off">
+                          <label class="btn button-form" for="j_large">Large</label>
+                          <input type="radio" class="btn-check" name="jersey_size" value="j_extra_large"
+                            id="j_extra_large" autocomplete="off">
+                          <label class="btn button-form" for="j_extra_large">Extra-Large</label>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend class="text-center">Shorts Size</legend>
+                        <div class="container-input">
+                          <input type="radio" class="btn-check" name="short_size" value="s_youth_small"
+                            id="s_youth_small" autocomplete="off">
+                          <label class="btn button-form" for="s_youth_small">Youth Small</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_youth_medium"
+                            id="s_youth_medium" autocomplete="off">
+                          <label class="btn button-form" for="s_youth_medium">Youth Medium</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_youth_large"
+                            id="s_youth_large" autocomplete="off">
+                          <label class="btn button-form" for="s_youth_large">Youth Large</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_small" id="s_small"
+                            autocomplete="off">
+                          <label class="btn button-form" for="s_small">Small</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_medium" id="s_medium"
+                            autocomplete="off">
+                          <label class="btn button-form" for="s_medium">Medium</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_large" id="s_large"
+                            autocomplete="off">
+                          <label class="btn button-form" for="s_large">Large</label>
+                          <input type="radio" class="btn-check" name="short_size" value="s_extra_large"
+                            id="s_extra_large" autocomplete="off">
+                          <label class="btn button-form" for="s_extra_large">Extra-Large</label>
+                        </div>
+                      </fieldset>
+
+                      <h4 class="text-center normalize-h">Permission to Play</h4>
+                      <div class="contract">
+                        <p>
+                          I, the parent or guardian of the minor registrant, agree that the registrant and I will abide
+                          by
+                          all
+                          the rules of the Mighty Ducks Hockey League (MDHL). In recognizing the possibility of physical
+                          injury associated with soccer and in consideration for the "League" accepting the registrant
+                          for
+                          its
+                          soccer programs and activities, I hereby release, discharge, and/or otherwise indemnify MDHL,
+                          their
+                          employees and associated personnel and volunteers, including the facilities used for practices
+                          and
+                          games, against any claim by or on behalf of the registrant as a result of the registrant's
+                          participation in the program and/or being transported to or from MDHL sponsored activities,
+                          which
+                          transportation.
+                        </p>
+                        <p>
+                          By entering my name below, I hereby agree and authorize the above. In addition, by entering my
+                          name
+                          below, I also acknowledge that I have read the cancellation policy and agree to its terms.
+                        </p>
+                        <p class="text-center">
+                          <label for="signature">Parent/Guardian Signature:</label>
+                          <input class="form-control" type="text" name="signature" id="signature" />
+                          <label for="sig_date">Date:</label>
+                          <input class="form-control" type="text" name="sig_date" id="sig_date" />
+                        </p>
+                      </div>
+                      <p class="text-center"><input type="submit" name="submit" value="Submit" placeholder="Send" /></p>
+
+                    </form>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go
+                      back</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="modal_rules" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                  <div class="modal-header p-0">
+                    <h5 class="title-schedule ps-3" id="exampleModalLabel">Rules</h5>
+                  </div>
+                  <div class="modal-body p-3">
+                    <div id="rules">
+                      <h2 class="title-rules">Sportsmanship</h2>
+                      <ul>
+                        <li>The common interest that members of the Association share is to inspire youth to practice
+                          the
+                          ideals of
+                          sportsmanship and fair play. Any player, coach, team, parent, spectator, administrator or
+                          referee
+                          whose
+                          behavior detracts from this purpose is subject to disciplinary action regardless of technical
+                          soccer
+                          background, expertise, accomplishments or standing.</li>
+                      </ul>
+
+                      <h2 class="title-rules">Fifa Field Regulations</h2>
+                      <ol>
+                        <li class="mb-3">
+                          <h3 class="normalize-h mb-1">Dimensions.</h3> FIFA Law 1 provides for flexible external field
+                          dimensions within a given
+                          maximum and
+                          minimum width and length. These dimensions should be adhered to for all fields used by teams
+                          under
+                          12 and
+                          older.
+                        </li>
+
+                        <li class="mb-3">
+                          <h3 class="normalize-h mb-1">Competition Fields.</h3> Fields used within the competition
+                          program
+                          must
+                          be a minimum of 100 x
+                          60 yards.
+                          Leagues, districts or associations participating in the state competition program that are
+                          unable
+                          to provide
+                          a field that meets these minimum requirements must advise the State Competition Board which
+                          will
+                          assign its
+                          Fields Committee to inspect the field and recommend to the Board whether or not a waiver of
+                          the
+                          minimum
+                          dimensions should be granted. Teams from leagues, districts or associations that are unable to
+                          provide an
+                          acceptable field may be required to play all their games away.
+                        </li>
+
+                        <li class="mb-3">
+                          <h3 class="normalize-h mb-3">Fields Used By Young Age Groups.</h3>
+                          <ol type="a">
+                            <li>U-6 play on a field approximately 20 X 40 yards with no penalty areas. Fields for older
+                              age
+                              groups
+                              should be progressively larger.</li>
+                            <li>U-8 plays on a field 40-50 yards in length and 20-30 yards width.</li>
+                            <li>U-10 play on a field 70-80 yards in length and 40-50 yards in width.</li>
+                            <li>In addition, fields used by young age groups may have their internal dimensions and size
+                              of
+                              goal
+                              similarly modified.</li>
+                          </ol>
+                        </li>
+
+                        <li class="mb-3">
+                          <h3 class="normalize-h mb-3">Team Bench Areas</h3>
+                          <ol type="a">
+                            <li>Recreation &amp; District Programs
+                              <ul>
+                                <li class="m-0">The decision for team/spectator placement on the field will be made by
+                                  the
+                                  governing
+                                  body of that
+                                  team. A team's bench area shall consist of that area at least one (1) yard away from
+                                  the
+                                  touchline
+                                  and extending to twenty yards (20) both ways from the halfway line. In the event that
+                                  field 2
+                                  conditions require team benches to be on the same side of the field, a team's bench
+                                  area
+                                  shall
+                                  consist of that area two(2) yards away from the touchline and extending twenty yards
+                                  one
+                                  (1) way
+                                  from the halfway line.</li>
+                                <li>The home team has first choice as to where it wishes to locate its bench area.
+                                  Coaches
+                                  and
+                                  substitutes are required to remain within their bench area during the game. Parents
+                                  and
+                                  spectators
+                                  should occupy the same side of the field as the team they are supporting.</li>
+                              </ul>
+                            </li>
+                            <li>State Competition League Only
+                              <ul>
+                                <li>Except where it is determined by the referee to be impractical, team bench areas
+                                  shall
+                                  be along
+                                  the same touchline. Each team bench area shall be located two yards outside the
+                                  touchline,
+                                  beginning
+                                  not closer than five yards from midfield and extending not further than twenty yards
+                                  from
+                                  midfield.
+                                  The home team shall have the right to choose the location of its bench area. Coaches
+                                  and
+                                  substitutes
+                                  must remain within their team's bench area during the game.</li>
+                                <li>Parents and spectators must occupy the sideline opposite the team bench areas.
+                                  Supporters of a
+                                  team must assemble on the side of the midfield facing the team bench area of that
+                                  team.
+                                  There shall
+                                  be a buffer zone extending ten yards on each side of the midfield that may not be
+                                  occupied
+                                  by
+                                  parents or spectators. Match officials shall be empowered to enforce these provisions
+                                  and
+                                  may
+                                  suspend or terminate games in the event that any team, coach, parent, or spectator
+                                  declines to abide
+                                  by requests from match officials to comply with these standards.</li>
+                              </ul>
+                            </li>
+                          </ol>
+                        </li>
+                      </ol>
+
+                      <h2 class="title-rules">Equipment</h2>
+                      <ul>
+                        <li>We will abide by and accept equipment standards as defined by FIFA, USSF and USYSA.</li>
+                      </ul>
+
+                      <h2 class="title-rules">Number of Players</h2>
+                      <ul>
+                        <li>
+                          <h3 class="normalize-h">Team Size.</h3> Except as noted below, below, team rosters shall
+                          consist
+                          of not less than
+                          eleven nor
+                          more than eighteen players. A team must have at least seven (7) players present and able to
+                          play
+                          before
+                          referees are permitted to start a sanctioned game. No more than eleven (11) players per team
+                          may
+                          be on the
+                          field at any one time during the game.
+                        </li>
+                        <li>
+                          <h3 class="normalize-h">Size of Age Group Teams.</h3> In order to give player's maximum
+                          opportunity to develop in the
+                          game of
+                          soccer, U-6 through U-1O play modified rules and size of roster as stated in United States
+                          Youth
+                          Soccer
+                          Association (USYSA) rules. It is strongly recommended that U-6 and U-8 play 4 v 4. UYSA shall
+                          not
+                          sanction
+                          games involving teams under 10 or younger unless such games are conducted with not more than
+                          eight
+                          (8)
+                          players per side. (National rule 4036 section 2)
+                        </li>
+                        <li>Recreational/Developmental players at other ages or where numbers in the playing area are
+                          low
+                          are strongly
+                          encouraged to play small-sided games on reduced field size.</li>
+                      </ul>
+
+                      <h2 class="title-rules">Substitutions</h2>
+                      <ul>
+                        <li>Teams may make an unlimited number of substitutions at the times indicated below. A player
+                          who
+                          has been
+                          replaced may re-enter the game as a substitute at a later time.
+                          <ol>
+                            <li>Prior to a throw-in your favor.</li>
+                            <li>Prior to a goalkick by either team.</li>
+                            <li>After a goal by either team.</li>
+                            <li>After an injury, by either team, when the referee stops play.</li>
+                            <li>At half time.</li>
+                            <li>When a player has been &quot;cautioned&quot;, only the player receiving
+                              &quot;caution&quot;
+                              may be
+                              substituted.</li>
+                          </ol>
+                        </li>
+                      </ul>
+
+                      <h2 class="title-rules">Confiscated Player Passes</h2>
+                      <ul>
+                        <li>Passes of any individual(s) ejected from any match shall be retained after the match by the
+                          referee. The
+                          pass of any individual who has received a third caution (yellow card) during a playing year
+                          shall
+                          be
+                          confiscated by the referee at the conclusion of the match in which the third caution was
+                          received.
+                          That
+                          player will be suspended from playing in the next game in which the offending participant
+                          would
+                          otherwise be
+                          eligible to participate. This process will continue so that for every third yellow card
+                          received
+                          during a
+                          playing year, the player will be suspended from playing in the next game (after the receipt of
+                          a
+                          third
+                          yellow card) for which the offending participate would otherwise be eligible to participate.
+                          The
+                          referee
+                          shall deliver all confiscated passes to the UYSA State Office within forty-eight (48) hours of
+                          the
+                          conclusion of the match.</li>
+                      </ul>
+
+                      <h2 class="title-rules">All-Play</h2>
+                      <ul>
+                        <li>All-play means that every recreation player on every team shall play at least fifty percent
+                          of
+                          each game.
+                          Coaches in the competition program are encouraged to play their players 50% of each game.
+
+
+
+                        </li>
+                        <li>A Coach shall be permitted to not play a player 50% of each game under special
+                          circumstances, e.g.,
+                          unexcused absences from practice and/or games, ungentlemanly conduct at practice and/or games,
+                          and
+                          injuries.</li>
+                      </ul>
+
+                      <h2 class="title-rules">Player's Equipment</h2>
+                      <ul>
+                        <li>Where the uniform colors of both teams are so similar that the referee orders a change, the
+                          designated
+                          home team must change to colors distinct from those of the opponent.</li>
+                      </ul>
+
+                      <h2 class="title-rules">Mixed Teams</h2>
+                      <ul>
+                        <li>
+                          <h3 class="normalize-h">Girls Playing On Boys' Teams.</h3> Girls are eligible to play on
+                          boys'teams with
+                          parent/guardian
+                          permission.
+                        </li>
+                        <li>
+                          <h3 class="normalize-h">Types of Teams.</h3> Teams with females only are Girls Teams. All
+                          others
+                          are Boys Teams.
+                        </li>
+                      </ul>
+
+                      <h2 class="title-rules">Coaching from the Sidelines</h2>
+                      <ul>
+                        <li>Coaching from the sidelines, i.e., giving direction to one's own team on points of strategy
+                          and
+                          position,
+                          is permitted provided that:
+                          <ol>
+                            <li>No mechanical, electrical or other devices are used to amplify the voice.</li>
+                            <li>The tone of voice is informative and not a harangue.</li>
+                            <li>The coaching takes place within the team's bench area.</li>
+                            <li>No coach, substitute, player or spectator is to make derogatory remarks or gestures to
+                              the
+                              referees,
+                              linesmen, players, substitutes or spectators.</li>
+                            <li>No coach, player, substitute or spectator is to use profanity or incite, in any manner,
+                              disruptive
+                              behavior of any kind.</li>
+                          </ol>
+                        </li>
+                      </ul>
+
+                      <h2 class="title-rules">Game Termination</h2>
+                      <ul>
+                        <li>Any game terminated after 15 minutes into the second half by the referee by reason of the
+                          elements, or by
+                          reason of grave disorder on the part of the coaches, players or spectators of a team that is
+                          losing at the
+                          point that the game is terminated, shall stand as a completed game. If a team is ahead and the
+                          game is
+                          called because of their actions they will lose the game 1-0.
+                      </ul>
+
+                      <h2 class="title-rules">Conditions of Replay of Games</h2>
+                      <ul>
+                        <li>Any game which is required to be replayed as a result of any protest orappeal, shall be
+                          subject
+                          to the
+                          following conditions:
+                          <ol>
+                            <li>The game shall be replayed on the same field, as was the suspended or protested game,
+                              unless
+                              otherwise
+                              agreed by the coaches.</li>
+                            <li>Impartial referees shall be assigned to the new game.</li>
+                            <li>The PROTEST AND APPEALS COMMITTEE shall have the power to impose such additional
+                              conditions
+                              on the
+                              replay of the game, as it deems appropriate under the circumstances.</li>
+                          </ol>
+                        </li>
+                      </ul>
+
+                      <h2 class="title-rules">Referee Responsibilities</h2>
+                      <ul>
+                        <li> The referee shall verify the identity of the players and coaches with his/her player pass.
+                          He
+                          shall
+                          collect the passes of those players and coaches who are to participate in the game. The
+                          referee
+                          must allow
+                          no player into the game for whom he/she has no pass.</li>
+                        <li>Upon completion of the game, the referee shall send his/her report to the UYSA offices
+                          within
+                          four (4)
+                          days, holidays excluded. If a coach or a player is ejected, the referee report form is
+                          required
+                          within
+                          forty-eight (48) hours along with the player/coach pass.</li>
+                        <li>A referee report form must be filed for every game played.</li>
+                        <li>Each team must determine whether or not referees are registered prior to the start of each
+                          game.
+                          Upon
+                          request, referees officiating at any game must willingly and without bias, show documentation
+                          regarding
+                          their certification level and registration standing with the USSF to coach, assistant coach,
+                          or
+                          team captain
+                          of teams participating in that game. Prior to the game a coach may decide to postpone the game
+                          if
+                          the
+                          referees do not produce the requested documentation. The game is to be replayed at a later
+                          date.
+                        </li>
+                        <li>Referees not complying with this section will be referred to the Disciplinary Committee.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn button-normalize button-go-back" data-bs-dismiss="modal">Go
+                      back</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </main>
+      </div>
+      <div v-if="page === 'schedule'" class="container-phone d-flex flex-column p-0 m-0">
+        <header class="header-schedule">
+          <h1 class="title-schedule ps-3">Events</h1>
+          <form class="schedule-selection">
+            <input type="radio" name="schedule-selection" v-model="period" value="all" class="btn-check" id="all"
+              autocomplete="off">
+            <label class="btn selection all d-flex align-items-center" for="all">ALL</label>
+            <input type="radio" name="schedule-selection" v-model="period" value="month" class="btn-check" id="month"
+              autocomplete="off">
+            <label class="btn selection month d-flex align-items-center" for="month">MONTH</label>
+            <input type="radio" name="schedule-selection" v-model="period" value="week" class="btn-check" id="week"
+              autocomplete="off">
+            <label class="btn selection week d-flex align-items-center" for="week">WEEK</label>
+            <!-- <span class="selection all">ALL</span>
+          
+          <span class="selection month">MONTH</span>
+          <span class="selection week">WEEK</span> -->
+          </form>
+        </header>
+        <main class="main-schedule flex-fill">
+          <template v-if="events.length == 0">
+            <div class="text-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            {{filterByPeriod}}
+            <div class="container-fluid p-0 d-flex justify-content-center" v-if="eventsFiltered.length == 0">
+              <span class="text-center mt-3">No match founds</span>
+            </div>
+            <div class="container-schedule" v-for="eve in eventsFiltered">
+
+              <div class="card-event d-flex justify-content-between align-items-center">
+                <div class="card-mark"></div>
+                <div class="info-event ps-4 pt-3">
+                  <h2 class="title-card">{{eve.teams}}</h2>
+                  <p>{{eve.location}}</p>
+                  <p>{{eve.date}}</p>
+                </div>
+                <div class="buttons-event d-flex flex-column justify-content-around pe-3">
+                  <!--BUTTON-->
+                  <button type="button" class="button-normalize" data-bs-toggle="modal" @click="moreInfo(eve)"
+                    data-bs-target="#more_info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                      <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
+                  </button>
+                  <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                    </svg>
+                  </button>
+                  <button v-else class="button-normalize" @click="deleteReminder(eve)">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35"
+                      class="bi bi-bell-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="more_info" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+              tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+                <div class="modal-content">
+                  <div class="container-event-map">
+                    <iframe class="event-map" :src="detail.src_map" style="border:0;" allowfullscreen="" loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                  <div class="modal-body modal-body-event">
+                    <h4 class="text-center title-modal">{{detail.teams}}</h4>
+                    <div class="d-flex justify-content-between mt-4">
+
+                      <span>{{detail.date }}{{" - "}}{{detail.time}}</span>
+
+                      <button class="button-normalize" v-if="detail.add" @click="addReminder(detail)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
+                          viewBox="0 0 16 16">
                           <path
                             d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                         </svg>
                       </button>
-                      <button class="button-normalize" v-else @click="deleteReminder(eve)">
+                      <button v-else class="button-normalize" @click="deleteReminder(detail)">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                          class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35"
+                          class="bi bi-bell-fill" viewBox="0 0 16 16">
                           <path
-                            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                         </svg>
                       </button>
                     </div>
+                    <p class="text-center mt-3">{{detail.location}}</p>
+                    <p class="text-center mt-4">{{detail.address}}</p>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+
+                    <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go
+                      back</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go back</button>
-            </div>
-          </div>
-        </div>
+          </template>
+        </main>
       </div>
 
-      <div class="modal" id="more_info" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-          <div class="modal-content">
-            <div class="container-event-map">
-              <iframe class="event-map" :src="detail.src_map" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="modal-body modal-body-event">
-              <h4 class="text-center title-modal">{{detail.teams}}</h4>
-              <div class="d-flex justify-content-between mt-4">
-
-                <span>{{detail.date }}{{" - "}}{{detail.time}}</span>
-
-                <button class="button-normalize" v-if="detail.add" @click="addReminder(detail)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                  </svg>
-                </button>
-                <button v-else class="button-normalize" @click="deleteReminder(detail)">
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell-fill"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                  </svg>
-                </button>
-              </div>
-              <p class="text-center mt-3">{{detail.location}}</p>
-              <p class="text-center mt-4">{{detail.address}}</p>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button class="button-normalize button-go-back" data-bs-target="#notifications" data-bs-toggle="modal">Go
-                back</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <main class="main">
-        <div class="container-title-home">
-          <h1 class="title-home me-3 mt-2">MDHL</h1>
-          <h2 class="h-see">SEE WHAT EVENTS</h2>
-          <h2 class="h-coming"> ARE COMING</h2>
-        </div>
-        <div class="container-info">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#modal_rules"
-            class="button-normalize important-info rules">
-            RULES
-          </button>
-          <button class="button-normalize important-info contact">
-            CONTACT
-          </button>
-          <button type="button" data-bs-toggle="modal" data-bs-target="#register_player"
-            class="button-normalize important-info rules">
-            REGISTER PLAYER
-          </button>
-          <div class="modal" id="register_player" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-              <div class="modal-content">
-                <div class="modal-header p-0">
-                  <h5 class="title-schedule ps-3" id="exampleModalLabel">Register player</h5>
-
-                </div>
-                <div class="modal-body p-3">
-                  <form method="get">
-                    <div class="d-flex flex-column align-items-center">
-                      <label for="first_name">Player's First Name</label>
-                      <input type="text" class="form-control mb-2" name="first_name" id="first_name" />
-                      <label for="last_name">Last Name</label>
-                      <input type="text" class="form-control mb-2" name="last_name" id="last_name" />
-                      <label for="street_address">Street Address</label>
-                      <input type="text" class="form-control mb-2" name="street_address" id="street_address" />
-                      <label for="city">City</label>
-                      <input type="text" class="form-control mb-2" name="city" id="city" />
-                      <label for="zip">Zip Code</label>
-                      <input type="text" class="form-control" name="zip" id="zip" />
-                      <label for="birth_date">Birth Date</label>
-                      <input type="text" class="form-control" name="birth_date" id="birth_date" />
-                      <label for="parent_guardian">Parent/Guardian Name</label>
-                      <input type="text" class="form-control" name="parent_guardian" id="parent_guardian" />
-                      <label for="contact_phone">Contact Phone</label>
-                      <input type="text" class="form-control" name="contact_phone" id="contact_phone" />
-                      <label for="contact_email">Contact Email</label>
-                      <input type="text" class="form-control" name="contact_email" id="contact_email" />
-                    </div>
-                    <fieldset class="d-flex flex-column align-items-center">
-                      <legend class="text-center">Gender</legend>
-                      <div class="container-input">
-                        <input type="radio" class="btn-check" name="gender" value="female" id="female"
-                          autocomplete="off">
-                        <label class="btn button-form me-2" for="female">Female</label>
-                        <input type="radio" class="btn-check" name="gender" value="male" id="male" autocomplete="off">
-                        <label class="btn button-form" for="male">Male</label>
-                        <!-- <input type="radio" class="btn-check" name="gender" value="non_binary" id="non_binary" autocomplete="off">
-                    <label class="btn btn-secondary" for="non_binary">Non binary</label>
-                    <input type="radio" class="btn-check" name="gender" value="other" id="other" autocomplete="off">
-                    <label class="btn btn-secondary" for="other">Other</label> -->
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend class="text-center">Grade</legend>
-                      <div class="container-input">
-                        <input type="radio" class="btn-check" name="grade" value="pre_school" id="pre_school"
-                          autocomplete="off">
-                        <label class="btn button-form" for="pre_school">Pre-School</label>
-                        <input type="radio" class="btn-check" name="grade" value="1st" id="1st" autocomplete="off">
-                        <label class="btn button-form" for="1st">1st</label>
-                        <input type="radio" class="btn-check" name="grade" value="2nd" id="2nd" autocomplete="off">
-                        <label class="btn button-form" for="2nd">2nd</label>
-                        <input type="radio" class="btn-check" name="grade" value="3rd" id="3rd" autocomplete="off">
-                        <label class="btn button-form" for="3rd">3rd</label>
-                        <input type="radio" class="btn-check" name="grade" value="4th" id="4th" autocomplete="off">
-                        <label class="btn button-form" for="4th">4th</label>
-                        <input type="radio" class="btn-check" name="grade" value="5th" id="5th" autocomplete="off">
-                        <label class="btn button-form" for="5th">5th</label>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend class="mb-1 text-center">Which elementary schools do you live near?</legend>
-                      <label for="school_1" class="impinfo">First Closest School:</label>
-                      <select class="form-select mb-3" name="school_1" id="school_1">
-                        <option value="katzenmaier">AJ Katzenmaier</option>
-                        <option value="greenbay">Greenbay</option>
-                        <option value="yeager">Howard A Yeager</option>
-                        <option value="hart">Marjorie P Hart</option>
-                        <option value="north">North Elementary</option>
-                        <option value="south">South Elementary</option>
-                      </select>
-
-                      <label for="school_2" class="impinfo">Second Closest School:</label>
-                      <select class="form-select mb-3" name="school_2" id="school_2">
-                        <option value="katzenmaier">AJ Katzenmaier</option>
-                        <option value="greenbay">Greenbay</option>
-                        <option value="yeager">Howard A Yeager</option>
-                        <option value="hart">Marjorie P Hart</option>
-                        <option value="north">North Elementary</option>
-                        <option value="south">South Elementary</option>
-                      </select>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend class="text-center">What position(s) do you normally play? <span class="note">(check all
-                          that apply)</span>
-                      </legend>
-
-                      <div class="container-input">
-                        <input type="checkbox" name="actual_position" class="btn-check" value="a_forward" id="a_forward"
-                          autocomplete="off">
-                        <label class="btn button-form" for="a_forward">Forward</label>
-                        <input type="checkbox" name="actual_position" class="btn-check" value="a_defense" id="a_defense"
-                          autocomplete="off">
-                        <label class="btn button-form" for="a_defense">Defense</label>
-                        <input type="checkbox" name="actual_position" class="btn-check" value="a_midfield"
-                          id="a_midfield" autocomplete="off">
-                        <label class="btn button-form" for="a_midfield">Midfield</label>
-                        <input type="checkbox" name="actual_position" class="btn-check" value="a_goalkeeper"
-                          id="a_goalkeeper" autocomplete="off">
-                        <label class="btn button-form" for="a_goalkeeper">Goalkeeper</label>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend class="text-center">What position(s) do you want to play? <span class="note">(check all
-                          that apply)</span>
-                      </legend>
-                      <div class="container-input">
-                        <input type="checkbox" name="wanted_position" class="btn-check" value="w_forward" id="w_forward"
-                          autocomplete="off">
-                        <label class="btn button-form" for="w_forward">Forward</label>
-                        <input type="checkbox" name="wanted_position" class="btn-check" value="w_defense" id="w_defense"
-                          autocomplete="off">
-                        <label class="btn button-form" for="w_defense">Defense</label>
-                        <input type="checkbox" name="wanted_position" class="btn-check" value="w_midfield"
-                          id="w_midfield" autocomplete="off">
-                        <label class="btn button-form" for="w_midfield">Midfield</label>
-                        <input type="checkbox" name="wanted_position" class="btn-check" value="w_goalkeeper"
-                          id="w_goalkeeper" autocomplete="off">
-                        <label class="btn button-form" for="w_goalkeeper">Goalkeeper</label>
-                      </div>
-                    </fieldset>
-                    <fieldset>
-                      <legend class="text-center">Jersey Size</legend>
-                      <div class="container-input">
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_youth_small"
-                          id="j_youth_small" autocomplete="off">
-                        <label class="btn button-form " for="j_youth_small">Youth Small</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_youth_medium"
-                          id="j_youth_medium" autocomplete="off">
-                        <label class="btn button-form " for="j_youth_medium">Youth Medium</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_youth_large"
-                          id="j_youth_large" autocomplete="off">
-                        <label class="btn button-form" for="j_youth_large">Youth Large</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_small" id="j_small"
-                          autocomplete="off">
-                        <label class="btn button-form " for="j_small">Small</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_medium" id="j_medium"
-                          autocomplete="off">
-                        <label class="btn button-form" for="j_medium">Medium</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_large" id="j_large"
-                          autocomplete="off">
-                        <label class="btn button-form" for="j_large">Large</label>
-                        <input type="radio" class="btn-check" name="jersey_size" value="j_extra_large"
-                          id="j_extra_large" autocomplete="off">
-                        <label class="btn button-form" for="j_extra_large">Extra-Large</label>
-                      </div>
-                    </fieldset>
-
-                    <fieldset>
-                      <legend class="text-center">Shorts Size</legend>
-                      <div class="container-input">
-                        <input type="radio" class="btn-check" name="short_size" value="s_youth_small" id="s_youth_small"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_youth_small">Youth Small</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_youth_medium"
-                          id="s_youth_medium" autocomplete="off">
-                        <label class="btn button-form" for="s_youth_medium">Youth Medium</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_youth_large" id="s_youth_large"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_youth_large">Youth Large</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_small" id="s_small"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_small">Small</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_medium" id="s_medium"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_medium">Medium</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_large" id="s_large"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_large">Large</label>
-                        <input type="radio" class="btn-check" name="short_size" value="s_extra_large" id="s_extra_large"
-                          autocomplete="off">
-                        <label class="btn button-form" for="s_extra_large">Extra-Large</label>
-                      </div>
-                    </fieldset>
-
-                    <h4 class="text-center normalize-h">Permission to Play</h4>
-                    <div class="contract">
-                      <p>
-                        I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by
-                        all
-                        the rules of the Mighty Ducks Hockey League (MDHL). In recognizing the possibility of physical
-                        injury associated with soccer and in consideration for the "League" accepting the registrant for
-                        its
-                        soccer programs and activities, I hereby release, discharge, and/or otherwise indemnify MDHL,
-                        their
-                        employees and associated personnel and volunteers, including the facilities used for practices
-                        and
-                        games, against any claim by or on behalf of the registrant as a result of the registrant's
-                        participation in the program and/or being transported to or from MDHL sponsored activities,
-                        which
-                        transportation.
-                      </p>
-                      <p>
-                        By entering my name below, I hereby agree and authorize the above. In addition, by entering my
-                        name
-                        below, I also acknowledge that I have read the cancellation policy and agree to its terms.
-                      </p>
-                      <p class="text-center">
-                        <label for="signature">Parent/Guardian Signature:</label>
-                        <input class="form-control" type="text" name="signature" id="signature" />
-                        <label for="sig_date">Date:</label>
-                        <input class="form-control" type="text" name="sig_date" id="sig_date" />
-                      </p>
-                    </div>
-                    <p class="text-center"><input type="submit" name="submit" value="Submit" placeholder="Send" /></p>
-
-                  </form>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go back</button>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal" id="modal_rules" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen">
-              <div class="modal-content">
-                <div class="modal-header p-0">
-                  <h5 class="title-schedule ps-3" id="exampleModalLabel">Rules</h5>
-                </div>
-                <div class="modal-body p-3">
-                  <div id="rules">
-                    <h2 class="title-rules">Sportsmanship</h2>
-                    <ul>
-                      <li>The common interest that members of the Association share is to inspire youth to practice the
-                        ideals of
-                        sportsmanship and fair play. Any player, coach, team, parent, spectator, administrator or
-                        referee
-                        whose
-                        behavior detracts from this purpose is subject to disciplinary action regardless of technical
-                        soccer
-                        background, expertise, accomplishments or standing.</li>
-                    </ul>
-
-                    <h2 class="title-rules">Fifa Field Regulations</h2>
-                    <ol>
-                      <li class="mb-3">
-                        <h3 class="normalize-h mb-1">Dimensions.</h3> FIFA Law 1 provides for flexible external field
-                        dimensions within a given
-                        maximum and
-                        minimum width and length. These dimensions should be adhered to for all fields used by teams
-                        under
-                        12 and
-                        older.
-                      </li>
-
-                      <li class="mb-3">
-                        <h3 class="normalize-h mb-1">Competition Fields.</h3> Fields used within the competition program
-                        must
-                        be a minimum of 100 x
-                        60 yards.
-                        Leagues, districts or associations participating in the state competition program that are
-                        unable
-                        to provide
-                        a field that meets these minimum requirements must advise the State Competition Board which will
-                        assign its
-                        Fields Committee to inspect the field and recommend to the Board whether or not a waiver of the
-                        minimum
-                        dimensions should be granted. Teams from leagues, districts or associations that are unable to
-                        provide an
-                        acceptable field may be required to play all their games away.
-                      </li>
-
-                      <li class="mb-3">
-                        <h3 class="normalize-h mb-3">Fields Used By Young Age Groups.</h3>
-                        <ol type="a">
-                          <li>U-6 play on a field approximately 20 X 40 yards with no penalty areas. Fields for older
-                            age
-                            groups
-                            should be progressively larger.</li>
-                          <li>U-8 plays on a field 40-50 yards in length and 20-30 yards width.</li>
-                          <li>U-10 play on a field 70-80 yards in length and 40-50 yards in width.</li>
-                          <li>In addition, fields used by young age groups may have their internal dimensions and size
-                            of
-                            goal
-                            similarly modified.</li>
-                        </ol>
-                      </li>
-
-                      <li class="mb-3">
-                        <h3 class="normalize-h mb-3">Team Bench Areas</h3>
-                        <ol type="a">
-                          <li>Recreation &amp; District Programs
-                            <ul>
-                              <li class="m-0">The decision for team/spectator placement on the field will be made by the
-                                governing
-                                body of that
-                                team. A team's bench area shall consist of that area at least one (1) yard away from the
-                                touchline
-                                and extending to twenty yards (20) both ways from the halfway line. In the event that
-                                field 2
-                                conditions require team benches to be on the same side of the field, a team's bench area
-                                shall
-                                consist of that area two(2) yards away from the touchline and extending twenty yards one
-                                (1) way
-                                from the halfway line.</li>
-                              <li>The home team has first choice as to where it wishes to locate its bench area. Coaches
-                                and
-                                substitutes are required to remain within their bench area during the game. Parents and
-                                spectators
-                                should occupy the same side of the field as the team they are supporting.</li>
-                            </ul>
-                          </li>
-                          <li>State Competition League Only
-                            <ul>
-                              <li>Except where it is determined by the referee to be impractical, team bench areas shall
-                                be along
-                                the same touchline. Each team bench area shall be located two yards outside the
-                                touchline,
-                                beginning
-                                not closer than five yards from midfield and extending not further than twenty yards
-                                from
-                                midfield.
-                                The home team shall have the right to choose the location of its bench area. Coaches and
-                                substitutes
-                                must remain within their team's bench area during the game.</li>
-                              <li>Parents and spectators must occupy the sideline opposite the team bench areas.
-                                Supporters of a
-                                team must assemble on the side of the midfield facing the team bench area of that team.
-                                There shall
-                                be a buffer zone extending ten yards on each side of the midfield that may not be
-                                occupied
-                                by
-                                parents or spectators. Match officials shall be empowered to enforce these provisions
-                                and
-                                may
-                                suspend or terminate games in the event that any team, coach, parent, or spectator
-                                declines to abide
-                                by requests from match officials to comply with these standards.</li>
-                            </ul>
-                          </li>
-                        </ol>
-                      </li>
-                    </ol>
-
-                    <h2 class="title-rules">Equipment</h2>
-                    <ul>
-                      <li>We will abide by and accept equipment standards as defined by FIFA, USSF and USYSA.</li>
-                    </ul>
-
-                    <h2 class="title-rules">Number of Players</h2>
-                    <ul>
-                      <li>
-                        <h3 class="normalize-h">Team Size.</h3> Except as noted below, below, team rosters shall consist
-                        of not less than
-                        eleven nor
-                        more than eighteen players. A team must have at least seven (7) players present and able to play
-                        before
-                        referees are permitted to start a sanctioned game. No more than eleven (11) players per team may
-                        be on the
-                        field at any one time during the game.
-                      </li>
-                      <li>
-                        <h3 class="normalize-h">Size of Age Group Teams.</h3> In order to give player's maximum
-                        opportunity to develop in the
-                        game of
-                        soccer, U-6 through U-1O play modified rules and size of roster as stated in United States Youth
-                        Soccer
-                        Association (USYSA) rules. It is strongly recommended that U-6 and U-8 play 4 v 4. UYSA shall
-                        not
-                        sanction
-                        games involving teams under 10 or younger unless such games are conducted with not more than
-                        eight
-                        (8)
-                        players per side. (National rule 4036 section 2)
-                      </li>
-                      <li>Recreational/Developmental players at other ages or where numbers in the playing area are low
-                        are strongly
-                        encouraged to play small-sided games on reduced field size.</li>
-                    </ul>
-
-                    <h2 class="title-rules">Substitutions</h2>
-                    <ul>
-                      <li>Teams may make an unlimited number of substitutions at the times indicated below. A player who
-                        has been
-                        replaced may re-enter the game as a substitute at a later time.
-                        <ol>
-                          <li>Prior to a throw-in your favor.</li>
-                          <li>Prior to a goalkick by either team.</li>
-                          <li>After a goal by either team.</li>
-                          <li>After an injury, by either team, when the referee stops play.</li>
-                          <li>At half time.</li>
-                          <li>When a player has been &quot;cautioned&quot;, only the player receiving
-                            &quot;caution&quot;
-                            may be
-                            substituted.</li>
-                        </ol>
-                      </li>
-                    </ul>
-
-                    <h2 class="title-rules">Confiscated Player Passes</h2>
-                    <ul>
-                      <li>Passes of any individual(s) ejected from any match shall be retained after the match by the
-                        referee. The
-                        pass of any individual who has received a third caution (yellow card) during a playing year
-                        shall
-                        be
-                        confiscated by the referee at the conclusion of the match in which the third caution was
-                        received.
-                        That
-                        player will be suspended from playing in the next game in which the offending participant would
-                        otherwise be
-                        eligible to participate. This process will continue so that for every third yellow card received
-                        during a
-                        playing year, the player will be suspended from playing in the next game (after the receipt of a
-                        third
-                        yellow card) for which the offending participate would otherwise be eligible to participate. The
-                        referee
-                        shall deliver all confiscated passes to the UYSA State Office within forty-eight (48) hours of
-                        the
-                        conclusion of the match.</li>
-                    </ul>
-
-                    <h2 class="title-rules">All-Play</h2>
-                    <ul>
-                      <li>All-play means that every recreation player on every team shall play at least fifty percent of
-                        each game.
-                        Coaches in the competition program are encouraged to play their players 50% of each game.
-
-
-
-                      </li>
-                      <li>A Coach shall be permitted to not play a player 50% of each game under special
-                        circumstances, e.g.,
-                        unexcused absences from practice and/or games, ungentlemanly conduct at practice and/or games,
-                        and
-                        injuries.</li>
-                    </ul>
-
-                    <h2 class="title-rules">Player's Equipment</h2>
-                    <ul>
-                      <li>Where the uniform colors of both teams are so similar that the referee orders a change, the
-                        designated
-                        home team must change to colors distinct from those of the opponent.</li>
-                    </ul>
-
-                    <h2 class="title-rules">Mixed Teams</h2>
-                    <ul>
-                      <li>
-                        <h3 class="normalize-h">Girls Playing On Boys' Teams.</h3> Girls are eligible to play on
-                        boys'teams with
-                        parent/guardian
-                        permission.
-                      </li>
-                      <li>
-                        <h3 class="normalize-h">Types of Teams.</h3> Teams with females only are Girls Teams. All others
-                        are Boys Teams.
-                      </li>
-                    </ul>
-
-                    <h2 class="title-rules">Coaching from the Sidelines</h2>
-                    <ul>
-                      <li>Coaching from the sidelines, i.e., giving direction to one's own team on points of strategy
-                        and
-                        position,
-                        is permitted provided that:
-                        <ol>
-                          <li>No mechanical, electrical or other devices are used to amplify the voice.</li>
-                          <li>The tone of voice is informative and not a harangue.</li>
-                          <li>The coaching takes place within the team's bench area.</li>
-                          <li>No coach, substitute, player or spectator is to make derogatory remarks or gestures to the
-                            referees,
-                            linesmen, players, substitutes or spectators.</li>
-                          <li>No coach, player, substitute or spectator is to use profanity or incite, in any manner,
-                            disruptive
-                            behavior of any kind.</li>
-                        </ol>
-                      </li>
-                    </ul>
-
-                    <h2 class="title-rules">Game Termination</h2>
-                    <ul>
-                      <li>Any game terminated after 15 minutes into the second half by the referee by reason of the
-                        elements, or by
-                        reason of grave disorder on the part of the coaches, players or spectators of a team that is
-                        losing at the
-                        point that the game is terminated, shall stand as a completed game. If a team is ahead and the
-                        game is
-                        called because of their actions they will lose the game 1-0.
-                    </ul>
-
-                    <h2 class="title-rules">Conditions of Replay of Games</h2>
-                    <ul>
-                      <li>Any game which is required to be replayed as a result of any protest orappeal, shall be
-                        subject
-                        to the
-                        following conditions:
-                        <ol>
-                          <li>The game shall be replayed on the same field, as was the suspended or protested game,
-                            unless
-                            otherwise
-                            agreed by the coaches.</li>
-                          <li>Impartial referees shall be assigned to the new game.</li>
-                          <li>The PROTEST AND APPEALS COMMITTEE shall have the power to impose such additional
-                            conditions
-                            on the
-                            replay of the game, as it deems appropriate under the circumstances.</li>
-                        </ol>
-                      </li>
-                    </ul>
-
-                    <h2 class="title-rules">Referee Responsibilities</h2>
-                    <ul>
-                      <li> The referee shall verify the identity of the players and coaches with his/her player pass. He
-                        shall
-                        collect the passes of those players and coaches who are to participate in the game. The referee
-                        must allow
-                        no player into the game for whom he/she has no pass.</li>
-                      <li>Upon completion of the game, the referee shall send his/her report to the UYSA offices within
-                        four (4)
-                        days, holidays excluded. If a coach or a player is ejected, the referee report form is required
-                        within
-                        forty-eight (48) hours along with the player/coach pass.</li>
-                      <li>A referee report form must be filed for every game played.</li>
-                      <li>Each team must determine whether or not referees are registered prior to the start of each
-                        game.
-                        Upon
-                        request, referees officiating at any game must willingly and without bias, show documentation
-                        regarding
-                        their certification level and registration standing with the USSF to coach, assistant coach, or
-                        team captain
-                        of teams participating in that game. Prior to the game a coach may decide to postpone the game
-                        if
-                        the
-                        referees do not produce the requested documentation. The game is to be replayed at a later date.
-                      </li>
-                      <li>Referees not complying with this section will be referred to the Disciplinary Committee.</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <button type="button" class="btn button-normalize button-go-back" data-bs-dismiss="modal">Go
-                    back</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-      </main>
-      <div class="nav-bar"></div>
-      <nav class="nav-bar nav-bar-schedule d-flex align-items-center mt-2">
-        <button class="button-normalize" type="button" @click="vibrate(50); page ='home'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-house-fill"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-            <path fill-rule="evenodd"
-              d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-          </svg></button>
-        <button class="button-normalize" type="button" @click="vibrate(50); page='schedule'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-calendar-date"
-            viewBox="0 0 16 16">
-            <path
-              d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
-            <path
-              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-          </svg></button>
-        <button class="button-normalize" type="button" @click="vibrate(50); page='account'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
-            viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-          </svg></button>
-      </nav>
-
-    </div>
-    <div v-if="page === 'schedule'" class="container-phone d-flex flex-column p-0 m-0" id="app">
-      <header class="header-schedule">
-        <h1 class="title-schedule ps-3">Events</h1>
-        <form class="schedule-selection">
-          <input type="radio" name="schedule-selection" v-model="period" value="all" class="btn-check" id="all"
-            autocomplete="off">
-          <label class="btn selection all d-flex align-items-center" for="all">ALL</label>
-          <input type="radio" name="schedule-selection" v-model="period" value="month" class="btn-check" id="month"
-            autocomplete="off">
-          <label class="btn selection month d-flex align-items-center" for="month">MONTH</label>
-          <input type="radio" name="schedule-selection" v-model="period" value="week" class="btn-check" id="week"
-            autocomplete="off">
-          <label class="btn selection week d-flex align-items-center" for="week">WEEK</label>
-          <!-- <span class="selection all">ALL</span>
-          
-          <span class="selection month">MONTH</span>
-          <span class="selection week">WEEK</span> -->
-        </form>
-      </header>
-      <main class="main-schedule flex-fill">
-        <template v-if="events.length == 0">
-          <div class="text-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </template>
-        <template v-else>
-          {{filterByPeriod}}
-          <div class="container-fluid p-0 d-flex justify-content-center" v-if="eventsFiltered.length == 0">
-            <span class="text-center">No match founds</span>
-          </div>
-          <div class="container-schedule" v-for="eve in eventsFiltered">
-
-            <div class="card-event d-flex justify-content-between align-items-center">
-              <div class="card-mark"></div>
-              <div class="info-event ps-4 pt-3">
-                <h2 class="title-card">{{eve.teams}}</h2>
-                <p>{{eve.location}}</p>
-                <p>{{eve.date}}</p>
-              </div>
-              <div class="buttons-event d-flex flex-column justify-content-around pe-3">
-                <!--BUTTON-->
-                <button type="button" class="button-normalize" data-bs-toggle="modal" @click="moreInfo(eve)"
-                  data-bs-target="#more_info">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                    <path
-                      d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
-                  </svg>
-                </button>
-                <button class="button-normalize" v-if="eve.add" @click="addReminder(eve)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                  </svg>
-                </button>
-                <button v-else class="button-normalize" @click="deleteReminder(eve)">
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell-fill"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="modal" id="more_info" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-              <div class="modal-content">
-                <div class="container-event-map">
-                  <iframe class="event-map" :src="detail.src_map" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="modal-body modal-body-event">
-                  <h4 class="text-center title-modal">{{detail.teams}}</h4>
-                  <div class="d-flex justify-content-between mt-4">
-    
-                    <span>{{detail.date }}{{" - "}}{{detail.time}}</span>
-    
-                    <button class="button-normalize" v-if="detail.add" @click="addReminder(detail)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell"
-                        viewBox="0 0 16 16">
-                        <path
-                          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-                      </svg>
-                    </button>
-                    <button v-else class="button-normalize" @click="deleteReminder(detail)">
-    
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#c44a35" class="bi bi-bell-fill"
-                        viewBox="0 0 16 16">
-                        <path
-                          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
-                      </svg>
-                    </button>
-                  </div>
-                  <p class="text-center mt-3">{{detail.location}}</p>
-                  <p class="text-center mt-4">{{detail.address}}</p>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                 
-                    <button type="button" class="button-normalize button-go-back" data-bs-dismiss="modal">Go back</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-      </main>
-
-      <nav class="nav-bar nav-bar-schedule d-flex align-items-center">
-        <button class="button-normalize" type="button" @click="vibrate(50); page ='home'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-house-fill"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-            <path fill-rule="evenodd"
-              d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-          </svg></button>
-        <button class="button-normalize" type="button" @click="vibrate(50); page='schedule'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-calendar-date"
-            viewBox="0 0 16 16">
-            <path
-              d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
-            <path
-              d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-          </svg></button>
-        <button class="button-normalize" type="button" @click="vibrate(50); page='account'"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
-            viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-          </svg></button>
-      </nav>
-
-    </div>
-    <div v-if="page === 'account'" class="body container-fluid p-0 m-0" id="app">
-      <div v-if="!logged" class="container-login container-phone p-0 m-0">
+      <div v-if="page == 'account' && !logged" class="container-login container-phone p-0 m-0">
         <header class="header-login d-flex justify-content-start">
           <button type="button" @click="page='home'"
             class="button-normalize mt-3 align-self-start d-flex justify-content-center align-items-center"> <svg
@@ -895,7 +884,8 @@
         </main>
       </div>
 
-      <div v-else class="container-phone d-flex flex-column justify-content-between p-0 m-0">
+      <div v-if="page == 'account' && logged"
+        class="container-phone d-flex flex-column justify-content-between p-0 m-0">
         <header class="header-account d-flex justify-content-end px-2 pe-2">
           <button @click="logout()"
             class="button-normalize d-flex justify-content-center align-items-center log-out"><span
@@ -909,7 +899,7 @@
         </header>
         <main class="main-account">
           <div class="banner">
-            <div class="container-user-image mt-1">
+            <div class="container-user-image m-0">
               <img src="./assets/img/user.png" alt="user image" class="user-image">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
@@ -917,7 +907,7 @@
                   d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
               </svg>
             </div>
-            <p class="text-center text-light mb-0 mt-1">@username<svg xmlns="http://www.w3.org/2000/svg" width="16"
+            <p class="text-center mb-0 mt-1">@username<svg xmlns="http://www.w3.org/2000/svg" width="16"
                 height="16" fill="ivory" class="bi bi-pencil-square  ms-2" viewBox="0 0 16 16">
                 <path
                   d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -925,7 +915,7 @@
                   d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
               </svg></p>
           </div>
-          <div class="personal-data mb-2">
+          <div class="personal-data">
             <h4 class="normalize-h d-flex justify-content-between">Personal data<button v-if="conditionInput"
                 type="button" @click="enableEdition()" class="button-normalize"><svg xmlns="http://www.w3.org/2000/svg"
                   width="16" height="16" fill="gray" class="bi bi-pencil-square  ms-auto" viewBox="0 0 16 16">
@@ -970,7 +960,7 @@
               </div>
               <div class="form-check form-switch mb-2">
                 <label class="form-check-label" for="dark_mode">Dark mode</label>
-                <input class="form-check-input" type="checkbox" role="switch" id="dark_mode">
+                <input @click="darkModeSave()" v-model="darkMode" class="form-check-input" type="checkbox" role="switch" id="dark_mode">
               </div>
               <div class="form-check form-switch mb-2">
                 <label class="form-check-label" for="sound">Turn on sound</label>
@@ -981,32 +971,32 @@
           </div>
 
         </main>
-        <div class="nav-bar"></div>
-        <nav class="nav-bar nav-bar-schedule d-flex align-items-center">
-          <button class="button-normalize" type="button" @click="vibrate(50); page ='home'"><svg
-              xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-house-fill"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-              <path fill-rule="evenodd"
-                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-            </svg></button>
-          <button class="button-normalize" type="button" @click="vibrate(50); page='schedule'"><svg
-              xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-calendar-date"
-              viewBox="0 0 16 16">
-              <path
-                d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg></button>
-          <button class="button-normalize" type="button" @click="vibrate(50); page='account'"><svg
-              xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
-              viewBox="0 0 16 16">
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-            </svg></button>
-        </nav>
       </div>
     </div>
+    <nav v-if="page !== 'account' || page === 'account' && logged"
+      class="nav-bar nav-bar-schedule d-flex align-items-center">
+      <button class="button-normalize" type="button" @click="vibrate(100); page ='home'"><svg
+          xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-house-fill"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+          <path fill-rule="evenodd"
+            d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+        </svg></button>
+      <button class="button-normalize" type="button" @click="vibrate(100); page='schedule'"><svg
+          xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-calendar-date"
+          viewBox="0 0 16 16">
+          <path
+            d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+          <path
+            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+        </svg></button>
+      <button class="button-normalize" type="button" @click="vibrate(100); page='account'"><svg
+          xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="sound-icon iconos-nav bi bi-person-fill"
+          viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg></button>
+    </nav>
   </div>
   <script type="module">
     // Import the functions you need from the SDKs you need
