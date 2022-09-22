@@ -23,7 +23,13 @@ createApp({
       clickSound: new Audio("./assets/sound/pop-sound.mp3"),
       page: "home",
       detail: "",
-      loaded: false
+      loaded: false,
+      userImg: "",
+      registerEmail: "",
+      registerPassword: "",
+      userData: "",
+      alias: "anonymous"
+
     }
   },
   created() {
@@ -49,6 +55,107 @@ createApp({
   },
 
   methods: {
+    register: function () {
+      if (this.registerEmail !== "" && this.registerPassword !== "") {
+        firebase.auth().createUserWithEmailAndPassword(this.registerEmail, this.registerPassword)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            this.page = "account";
+            this.registerEmail = "";
+            this.registerPassword = "";
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert("no se permite campos vaciós")
+            // ..
+          });
+      }
+    },
+    login: function () {
+      if (this.registerEmail !== "" && this.registerPassword !== "") {
+        firebase.auth().signInWithEmailAndPassword(this.registerEmail, this.registerPassword)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            this.userData = user;
+            this.logged = true;
+            this.page = "home";
+            this.alias = "pollito"
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
+      }
+    },
+    registerGoogle: function () {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          /** @type {firebase.auth.OAuthCredential} */
+          var credential = result.credential;
+
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+          this.page = "account";
+          // ...
+        }).catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+        });
+    },
+    loginGoogle: function () {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          /** @type {firebase.auth.OAuthCredential} */
+          var credential = result.credential;
+
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          var token = credential.accessToken;
+          // The signed-in user info.
+          var user = result.user;
+
+          this.userData = user;
+          this.logged = true;
+          this.page = "home";
+          this.alias = "pollito"
+          // ...
+        }).catch((error) => {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          var credential = error.credential;
+          // ...
+        });
+
+    },
+    logout: function () {
+      firebase.auth().signOut();
+      this.userData = "";
+      this.alias = "anonymous";
+      this.pagina = "account";
+      this.logged = false;
+      this.registerEmail = "";
+      this.registerPassword = "";
+    },
     addReminder: function (eve) {
       if (!this.reminders?.some(ev => ev.id === eve.id)) {
         this.reminders?.push(eve);
@@ -62,7 +169,7 @@ createApp({
       eve.add = true;
       localStorage.setItem('reminders', JSON.stringify(this.reminders));
     },
-    darkModeSave: function() {
+    darkModeSave: function () {
       localStorage.setItem('darkMode', JSON.stringify(!this.darkMode));
     },
     vibrate: function (ms) {
@@ -93,17 +200,37 @@ createApp({
       this.placeAge = this.age;
       this.placeGender = this.gender;
     },
-    login: function () {
-      this.logged = true;
-      localStorage.setItem('logged', JSON.stringify(this.logged));
-    },
-    logout: function () {
-      this.logged = false;
-      localStorage.setItem('logged', JSON.stringify(this.logged));
-    },
+    // login: function () {
+    //   this.logged = true;
+    //   localStorage.setItem('logged', JSON.stringify(this.logged));
+    // },
+    // logout: function () {
+    //   this.logged = false;
+    //   localStorage.setItem('logged', JSON.stringify(this.logged));
+    // },
     moreInfo: function (eve) {
       this.detail = eve;
 
+    },
+    saveImage: async function (e) {
+      let inputImg = e.target;
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(inputImg.files[0]);
+      let userImage;
+      fileReader.onload = async function () {
+        userImage = await fileReader.result;
+        // let output = document.getElementById('user_image');
+        // console.log(output)
+        // output.src = this.userImg;
+      }
+      fileReader.onerror = function () {
+        this.userImg = url("./assets/img/user.png");
+        let output = document.getElementById('user_image');
+        console.log(output)
+        output.src = this.userImg;
+      };
+      this.userImg = userImage;
+      console.log(this.userImg)
     }
   },
   computed: {

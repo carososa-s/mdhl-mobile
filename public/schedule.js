@@ -71,7 +71,7 @@ const schedule = {
                 address: "24 W Walton St, Chicago, IL 60610, Estados Unidos",
                 src_map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.657203837994!2d-87.63126344968316!3d41.90022877911849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f69da7%3A0x15e198c063fc787c!2sAJ%20Katzenmaier%20Elementary!5e0!3m2!1ses!2sar!4v1661471708660!5m2!1ses!2sar",
                 condition: "ok", 
-                reason: "reminder"
+                reason: "Reminder"
             },
             {
                 id: "aa07",
@@ -95,7 +95,7 @@ const schedule = {
                 address: "W Belden Ave, Chicago, IL 60614, Estados Unidos",
                 src_map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.5854551135762!2d-87.66512894968218!3d41.923269479116634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f852467%3A0xb6cb22b2f0358874!2sHoward%20A%20Yeager%20Elementary!5e0!3m2!1ses!2sar!4v1661471544254!5m2!1ses!2sar",
                 condition: "cancelled", 
-                reason: "Cancelled due to weather condition"
+                reason: "Cancelled"
             },
             {
                 id: "aa09",
@@ -131,7 +131,7 @@ const schedule = {
                 address: "1535 Everett Ave, Des Plaines, IL 60018, Estados Unidos",
                 src_map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.070635511684!2d-87.88823884967806!3d42.020217079109145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fb7ad3c474b63%3A0x93bdf85af2a839ed!2sSOUTH%20ELEMENTARY%20SCHOOL!5e0!3m2!1ses!2sar!4v1661472426799!5m2!1ses!2sar",
                 condition: "cancelled", 
-                reason: "Cancelled due to weather condition"
+                reason: "Cancelled"
             },
             {
                 id: "aa12",
