@@ -710,6 +710,10 @@ input[type="submit"] {
     width: 100%;
 }
 
+.message {
+   word-wrap: break-word;
+}
+
 @media (orientation: landscape) {
     .container-title-home {
         width: 49%;
